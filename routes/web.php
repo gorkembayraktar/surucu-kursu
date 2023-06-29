@@ -1,9 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\MediaController;
-use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\ServiceController;
+use App\Http\Controllers\Front\MediaController;
+use App\Http\Controllers\Front\BlogController;
+
+use App\Http\Controllers\Back\DashController;
+
+use App\Http\Controllers\Back\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +37,12 @@ Route::get('blog',[BlogController::class, 'list'])->name('blog');
 Route::get('blog/{slug}',[BlogController::class, 'single'])->name('blog-single');
 
 Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
+
+
+// Yönetim paneli
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashController::class, 'index'])->name('dashboard.index');
+});

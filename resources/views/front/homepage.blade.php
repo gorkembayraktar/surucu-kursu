@@ -3,7 +3,6 @@
         Anasayfa
     </x-slot>
     
-
 <div class="hero-wrap style2">
     <div class="hero-slider-one owl-carousel">
                     <div class="hero-slide-item hero-slide-3 bg-f" style="background-image: url({{asset('')}}panel/uploads/slides_v/1920x650/hero-slider-1.jpg)">
