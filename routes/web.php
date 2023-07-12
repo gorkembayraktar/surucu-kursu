@@ -41,7 +41,9 @@ Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
 
 // Yönetim paneli
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/{login}', [LoginController::class, 'index'])
+->where('login', '(login|giriş|giris|admin)')
+->name('login');
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashController::class, 'index'])->name('dashboard.index');
