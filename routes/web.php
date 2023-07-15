@@ -40,11 +40,20 @@ Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
 
 
 // Yönetim paneli
+Route::middleware('isLogin')->group(function(){
+    Route::get('login', [LoginController::class, 'index'])->name('login');
+    Route::post('login', [LoginController::class, 'post'])->name('login.post');
+   
+});
 
-Route::get('/{login}', [LoginController::class, 'index'])
-->where('login', '(login|giriş|giris|admin)')
-->name('login');
 
-Route::prefix('dashboard')->group(function () {
+Route::get('{login}', function(){
+    return redirect('/login');
+})
+->where('login', '(giriş|giris|admin)');
+
+Route::
+middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', [DashController::class, 'index'])->name('dashboard.index');
+    Route::post('logout', [LoginController::class, 'logout'])->name('dashboard.logout');
 });
