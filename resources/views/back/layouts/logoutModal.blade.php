@@ -2,7 +2,8 @@
  <!-- Logout Modal-->
  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <form action="{{ asset('') }}dashboard/logout" method="POST" class="form__content" id="logoutForm">
+        <form action="{{ route('dashboard.logout')}}" method="POST" class="form__content" id="logoutForm">
+            @csrf
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
