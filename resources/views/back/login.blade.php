@@ -19,7 +19,8 @@
    <link rel="apple-touch-icon" href="{{ asset('dist') }}/img/SmurfWebLogo.png">
 
 </head>
-<body class="dark-mode bg-dark hold-transition login-page">
+<!-- <body class="dark-mode bg-dark hold-transition login-page"> -->
+<body class=" hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary elevation-4">
@@ -27,14 +28,20 @@
       <a href="#" class="h1"><b>Yönetici Paneli</b></a>
     </div>
     <div class="card-body">
+      @if($errors->any())
+        <div class="alert alert-danger">
+          {{$errors->first()}}
+        </div>
+      @endif
+
       <p class="login-box-msg">Yönetim paneline erişmek için giriş yap!</p>
 
-      <form action="" method="POST" class="form__content">
-
+      <form action="{{route('login.post')}}" method="POST" class="form__content">
+        @csrf
 
         <div class="mb-3">
             <div class="input-group">
-                <input type="email" class="form-control" placeholder="Email" name="username" value="">
+                <input type="email" class="form-control" placeholder="Email" name="email" value="{{ Request::old('email') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
