@@ -28,7 +28,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('dashboard.index') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Yönetim Paneli
@@ -36,7 +36,7 @@
             </a>
           </li>
           <!-- is default open: menu-is-opening menu-open -->
-          <li class="nav-item ">
+          <li class="nav-item @if( in_array(Request::segment(2), ['slider', 'musteri-yorumlari'])) menu-is-opening menu-open @endif">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -46,13 +46,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="{{ route('dashboard.slider.index') }}" class="nav-link @if(Request::segment(2) == 'slider') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Slider</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('dashboard.customer-comments.index') }}" class="nav-link @if(Request::segment(2) == 'musteri-yorumlari') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Müşteri Yorumları</p>
                 </a>

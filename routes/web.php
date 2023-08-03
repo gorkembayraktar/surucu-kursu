@@ -9,6 +9,7 @@ use App\Http\Controllers\Back\DashController;
 
 use App\Http\Controllers\Back\LoginController;
 use App\Http\Controllers\Back\SliderController;
+use App\Http\Controllers\Back\CustomerCommentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,6 +60,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [SliderController::class, 'index'])->name('dashboard.slider.index');
         Route::get('ekle', [SliderController::class, 'insert'])->name('dashboard.slider.insert');
         Route::post('ekle', [SliderController::class, 'post'])->name('dashboard.slider.insert.post');
+    });
+
+    Route::prefix('musteri-yorumlari')->group(function () {
+        Route::get('/', [CustomerCommentsController::class, 'index'])->name('dashboard.customer-comments.index');
+        Route::get('ekle', [CustomerCommentsController::class, 'insert'])->name('dashboard.customer-comments.insert');
+        Route::post('ekle', [CustomerCommentsController::class, 'post'])->name('dashboard.customer-comments.insert.post');
     });
 
 });
