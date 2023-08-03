@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Back\DashController;
 
 use App\Http\Controllers\Back\LoginController;
+use App\Http\Controllers\Back\SliderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,6 @@ use App\Http\Controllers\Back\LoginController;
 */
 
 Route::get('/', [HomeController::class, 'main'])->name('index');
-
 
 Route::get('hakkimizda', [HomeController::class, 'about_us'])->name('about-us');
 Route::get('ekibimiz', [HomeController::class, 'team'])->name('team');
@@ -43,7 +43,6 @@ Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
 Route::middleware('isLogin')->group(function(){
     Route::get('login', [LoginController::class, 'index'])->name('login');
     Route::post('login', [LoginController::class, 'post'])->name('login.post');
-   
 });
 
 
@@ -52,8 +51,14 @@ Route::get('{login}', function(){
 })
 ->where('login', '(giriş|giris|admin)');
 
-Route::
-middleware('auth')->prefix('dashboard')->group(function () {
+Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', [DashController::class, 'index'])->name('dashboard.index');
     Route::post('logout', [LoginController::class, 'logout'])->name('dashboard.logout');
+
+    Route::prefix('slider')->group(function () {
+        Route::get('/', [SliderController::class, 'index'])->name('dashboard.slider.index');
+        Route::get('ekle', [SliderController::class, 'insert'])->name('dashboard.slider.insert');
+        Route::post('ekle', [SliderController::class, 'post'])->name('dashboard.slider.insert.post');
+    });
+
 });

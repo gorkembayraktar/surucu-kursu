@@ -16,19 +16,19 @@
             <div class="">
               <ol class="breadcrumb ">
                 <li class="breadcrumb-item"><a href="">Anasayfa</a></li>
-                <li class="breadcrumb-item active">Title</li>
+                <li class="breadcrumb-item active"> {{ $title }} </li>
               </ol>
             </div>
-            <h1 class="m-0">Title</h1>
+            <h1 class="m-0">{{ $title }}</h1>
           </div><!-- /.col -->
           <div class="col-auto">  
-            <a href="/dashboard/ayarlar/genel" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
             <i class="fas fa-fw fa-cog fa-sm text-white-50"></i> Ayarlar
             </a>
                 <a href="/dashboard/ayarlar/bakim-modu" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
                  <i class="fas fa-fw fa-cog fa-sm text-white-50"></i> Bakım Modu
             </a>
-            <a href="" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Web siteyi Görüntüle</a>
+            <a href="{{ route('index') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Web siteyi Görüntüle</a>
           </div>
           <!-- /.col -->
         </div><!-- /.row -->
