@@ -1,79 +1,47 @@
 <x-back-layout>
     <x-slot:title>
-        Anasayfa
+      Yönetim paneli
     </x-slot>
 
     
-        <!-- Info boxes -->
-        <div class="row">
-          
-            <div class="col-6 col-sm-6 col-md-3">
-              <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-gift"></i></span>
-  
-                <div class="info-box-content">
-                  <span class="info-box-text">Toplam İşlem Sayısı</span>
-                  <span class="info-box-number">
-                   0
+    <!-- Info boxes -->
+    <div class="row">
+      
+      <div class="col-md-6 col-12">
+         <div class="card">
+            <div class="card-header">
+              Anasayfa Bölümleri
+            </div>
+            <div class="card-body">
+              <ul class="list-group" id="orders">
+                <li id="order_1" class="list-group-item handle">
+                   <i class="fa fa-arrows-alt handle ui-sortable-handle" style="cursor:move;"></i>
+                   Slider 
+                   <span class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success cursor-pointer text-center d-inline-block float-right">
+                    <input type="checkbox" class="custom-control-input" id="row-editable-30" >
+                    <label class="custom-control-label" for="row-editable-30"></label>
                   </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
+                   <button class="btn btn-info btn-sm float-right mx-1" onclick="editItemElite(1)"><i class="fa fa-pen"></i></button>
+                </li>
+             </ul>
             </div>
-            <!-- /.col -->
+            <div class="card-footer clearfix"></div>
+         </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="card">
+
+          <div class="card-header">Birincil Menü</div>
+          <div class="card-body">
+        </div>
+
+        </div>
+      </div>
+
+
+    </div>
+      <!-- /.row -->
   
-  
-  
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-  
-  
-   
-          </div>
-          <!-- /.row -->
-  
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">Günlük Rapor</h5>
-  
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <p class="text-center">
-                        <strong>title</strong>
-                      </p>
-  
-                       <!-- AREA CHART -->
-                        <div class="chart">
-                              <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                        
-                      <!-- /.chart-responsive -->
-                    </div>
-                  
-                  </div>
-                  <!-- /.row -->
-                </div>
-                <!-- ./card-body -->
-           
-              </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col -->
-          </div>
     
 </x-back-layout>
 
