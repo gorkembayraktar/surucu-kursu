@@ -152,7 +152,7 @@
              
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item @if( Request::segment(2) == 'media' ) menu-is-opening menu-open @endif">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-image"></i>
               <p>
@@ -162,13 +162,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('dashboard.media.photo') }}" class="nav-link">
+                <a href="{{ route('dashboard.media.photo') }}" class="nav-link @if(Request::segment(3) == 'foto-galeri') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fotoğraf Galerisi</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.media.video') }}" class="nav-link @if(Request::segment(3) == 'video-galeri') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Video Galerisi</p>
                 </a>

@@ -1,6 +1,6 @@
 <x-back-layout>
     <x-slot:title>
-        Sayfalar
+        Medya Fotoğraflar
     </x-slot>
     <div class="row">
         <div class="col-md-12">

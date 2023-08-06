@@ -113,6 +113,11 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     Route::prefix('media')->group(function () {
         Route::get('foto-galeri', [AdminMediaController::class, 'photo'])->name('dashboard.media.photo');
-        Route::post('ekle', [AdminMediaController::class, 'photo_post'])->name('dashboard.media.photo.post');
+        Route::post('foto-galeri/ekle', [AdminMediaController::class, 'photo_post'])->name('dashboard.media.photo.post');
+
+        Route::get('video-galeri', [AdminMediaController::class, 'video'])->name('dashboard.media.video');
+
+        Route::get('video-galeri/ekle', [AdminMediaController::class, 'video_insert'])->name('dashboard.media.video.insert');
+        Route::post('video-galeri/ekle', [AdminMediaController::class, 'video_insert_post'])->name('dashboard.media.video.insert.post');
     });
 });
