@@ -11,6 +11,7 @@ use App\Http\Controllers\Back\LoginController;
 use App\Http\Controllers\Back\SliderController;
 use App\Http\Controllers\Back\CustomerCommentsController;
 use App\Http\Controllers\Back\TeamsController;
+use App\Http\Controllers\Back\FAQController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,6 +74,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [TeamsController::class, 'index'])->name('dashboard.teams.index');
         Route::get('ekle', [TeamsController::class, 'insert'])->name('dashboard.teams.insert');
         Route::post('ekle', [TeamsController::class, 'post'])->name('dashboard.teams.insert.post');
+    });
+
+    Route::prefix('sikca-sorulanlar')->group(function () {
+        Route::get('/', [FAQController::class, 'index'])->name('dashboard.faq.index');
+        Route::get('ekle', [FAQController::class, 'insert'])->name('dashboard.faq.insert');
+        Route::post('ekle', [FAQController::class, 'post'])->name('dashboard.faq.insert.post');
     });
 
 });

@@ -14,6 +14,8 @@
 
 @include('back.layouts.scripts')
 
+{{ $script ?? null }}
+
 
 </body>
 </html>

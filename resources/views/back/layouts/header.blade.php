@@ -22,6 +22,9 @@
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="panel/uploads/settings_v/32x32/favicon.png" sizes="32x32">
   <link rel="apple-touch-icon" href="panel/uploads/settings_v/32x32/favicon.png">
+
+  {{ $style ?? null }}
+
   <script>
 
     const BASE_URL = "";

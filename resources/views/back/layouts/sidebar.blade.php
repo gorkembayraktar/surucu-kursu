@@ -36,7 +36,7 @@
             </a>
           </li>
           <!-- is default open: menu-is-opening menu-open -->
-          <li class="nav-item @if( in_array(Request::segment(2), ['slider', 'musteri-yorumlari', 'ekibimiz'])) menu-is-opening menu-open @endif">
+          <li class="nav-item @if( in_array(Request::segment(2), ['slider', 'musteri-yorumlari', 'ekibimiz', 'sikca-sorulanlar'])) menu-is-opening menu-open @endif">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -64,7 +64,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('dashboard.faq.index') }}" class="nav-link @if(Request::segment(2) == 'sikca-sorulanlar') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Sıkça Sorulanlar</p>
                 </a>
