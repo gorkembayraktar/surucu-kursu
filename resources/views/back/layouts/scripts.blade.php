@@ -38,9 +38,11 @@ function ajax_api(props){
            resolve(r);
         },
         error:function(e){
-
+          if(!e.responseJSON ){
+            e.responseJSON = {};
+          }
   
-          if(!e.responseJSON || !e.responseJSON.message)
+          if( !e.responseJSON.message)
             e.responseJSON.message ='Bir sorun oluştu';
 
           resolve({

@@ -70,6 +70,10 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
     Route::prefix('slider')->group(function () {
         Route::get('/', [SliderController::class, 'index'])->name('dashboard.slider.index');
+        Route::get('{id}/duzenle', [SliderController::class, 'edit'])->name('dashboard.slider.edit');
+        Route::post('{id}/duzenle', [SliderController::class, 'edit_post'])->name('dashboard.slider.edit.post');
+        Route::post('{id}/sil', [SliderController::class, 'delete_post'])->name('dashboard.slider.delete.post');
+        Route::post('toggle', [SliderController::class, 'toggle_post'])->name('dashboard.slider.toggle.post');
         Route::get('ekle', [SliderController::class, 'insert'])->name('dashboard.slider.insert');
         Route::post('ekle', [SliderController::class, 'post'])->name('dashboard.slider.insert.post');
     });

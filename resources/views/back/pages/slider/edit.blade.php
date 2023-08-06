@@ -2,7 +2,7 @@
     <x-slot:title>
         Slider Oluştur
     </x-slot>
-    <form action="{{route('dashboard.slider.insert.post')}}" method="POST" class="form__content" enctype="multipart/form-data">
+    <form action="{{route('dashboard.slider.edit.post', $slider->id)}}" method="POST" class="form__content" enctype="multipart/form-data">
         @csrf
         
         <div class="row">
@@ -22,19 +22,19 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Başlık(*)</label>
                             <div class="col-sm-9">
-                            <input type="text" name="title" class="form-control" placeholder="title" value="" autocomplete="off" required="">
+                            <input type="text" name="title" class="form-control" placeholder="title" value="{{ old('title', $slider->title) }}" autocomplete="off" required="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Alt Başlık</label>
                             <div class="col-sm-9">
-                            <input type="text" name="subtitle" class="form-control" placeholder="title" value="" autocomplete="off">
+                            <input type="text" name="subtitle" class="form-control" placeholder="title" value="{{ old('subtitle', $slider->sub_title) }}" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">İçerik</label>
                             <div class="col-sm-9">
-                                <textarea name="content" class="form-control"></textarea>
+                                <textarea name="content" class="form-control">{{ old('content', $slider->content) }}</textarea>
                             </div>
                         </div>
                         <div class="col-md-12 p-0">
@@ -42,13 +42,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Düğme</label>
-                                        <input type="text" name="buttonName" class="form-control" value="">
+                                        <input type="text" name="buttonName" class="form-control" 
+                                        value="{{ old('buttonName', $slider->button_name) }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Yönlendir</label>
-                                        <input type="text" name="buttonRedirect" class="form-control" value="">
+                                        <input type="text" name="buttonRedirect" class="form-control" 
+                                        value="{{ old('buttonRedirect', $slider->button_redirect) }}">
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +58,7 @@
                     </div>
                     <div class="card-footer clearfix ">
                         <button type="submit" class="btn btn-sm btn-success shadow-sm float-right">
-                            <i class="fas fa-save fa-sm"></i>  Kaydet 
+                            <i class="fas fa-save fa-sm"></i>  Güncelle 
                     </button>
                     </div>
                 </div>
@@ -67,7 +69,11 @@
                 <div class="card">
                     <label for="inputEmail3" class="col-form-label px-2">Resim Seçimi</label>
                     <div class="position-relative">
-                        <img width="100%" id="preview" height="200" src="{{ asset('') }}default-image.png">
+                        @if($slider->image != null)
+                            <img width="100%" id="preview" height="200" src="{{ asset($slider->image) }}">
+                        @else 
+                            <img width="100%" id="preview" height="200" src="{{ asset('') }}default-image.png">
+                        @endif
                         <input type="file" name="slider" id="slider" class="form-control" style="
                             width: 100%;
                             height: 100%;

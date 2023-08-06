@@ -26,3 +26,9 @@ Bu proje Laravel 10. sürüm ile hazırlanmıştır. Kurumsal işletme "sürüc�
     - Müşteri yorumları ile işletmenizi tanıtabilir,
     - Ayarlar ile logo/icon, email, iletişim bilgilerinizi kaydedebilirsiniz.
     - Bakım modu sayesinde panelde değişiklikler yapabilir websitenizi yayına alabilirsiniz.
+
+
+#### Database kurulumu
+composer bulunan bir ortamda bu komutu çalıştırınız.
+php artisan migrate:refresh --seed
+

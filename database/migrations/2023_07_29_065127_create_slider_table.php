@@ -16,13 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             
             $table->string('title');
-            $table->string('sub_title');
-            $table->text('content');
-            $table->string('image');
+            $table->string('sub_title')->nullable();
+            $table->text('content')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('active');
             $table->integer('que');
-            $table->string('button_name');
-            $table->string('button_redirect');
+            $table->string('button_name')->nullable();
+            $table->string('button_redirect')->nullable();
    
             $table->timestamps();
 
