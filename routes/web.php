@@ -133,6 +133,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::post('gelismis', [SettingsController::class, 'advanced_post'])->name('dashboard.settings.advanced.post');
         Route::get('email', [SettingsController::class, 'email'])->name('dashboard.settings.email');
         Route::get('bakim-modu', [SettingsController::class, 'maintenance'])->name('dashboard.settings.maintenance');
+        Route::post('bakim-modu', [SettingsController::class, 'maintenance_post'])->name('dashboard.settings.maintenance.post');
     });
 
 
