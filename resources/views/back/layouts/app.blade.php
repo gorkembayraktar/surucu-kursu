@@ -22,13 +22,13 @@
             <h1 class="m-0">{{ $title }}</h1>
           </div><!-- /.col -->
           <div class="col-auto">  
-            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
-            <i class="fas fa-fw fa-cog fa-sm text-white-50"></i> Ayarlar
+            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-outline-secondary shadow-sm">
+            <i class="fas fa-fw fa-cog fa-sm text-primary-50"></i> Ayarlar
             </a>
-                <a href="/dashboard/ayarlar/bakim-modu" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                 <i class="fas fa-fw fa-cog fa-sm text-white-50"></i> Bakım Modu
+                <a href="/dashboard/ayarlar/bakim-modu" class="d-none d-sm-inline-block btn btn-sm btn-outline-info shadow-sm">
+                 <i class="fas fa-fw fa-cog fa-sm text-primary-50"></i> Bakım Modu
             </a>
-            <a href="{{ route('index') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Web siteyi Görüntüle</a>
+            <a href="{{ route('index') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm"><i class="fas fa-download fa-sm text-primary-50"></i> Web siteyi Görüntüle</a>
           </div>
           <!-- /.col -->
         </div><!-- /.row -->

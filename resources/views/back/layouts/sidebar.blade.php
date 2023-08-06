@@ -37,7 +37,7 @@
           </li>
           <!-- is default open: menu-is-opening menu-open -->
           <li class="nav-item @if( in_array(Request::segment(2), ['slider', 'musteri-yorumlari', 'ekibimiz', 'sikca-sorulanlar'])) menu-is-opening menu-open @endif">
-            <a href="" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Kurumsal
@@ -73,7 +73,7 @@
               </ul>
           </li>
           <li class="nav-item @if( in_array(Request::segment(2), ['sayfalar'])) menu-is-opening menu-open @endif">
-            <a href="" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
                 Sayfa
@@ -96,7 +96,7 @@
             </ul>
           </li>
           <li class="nav-item @if( in_array(Request::segment(2), ['hizmetler'])) menu-is-opening menu-open @endif">
-            <a href="" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-wrench"></i>
               <p>
                 Hizmetler
@@ -122,7 +122,7 @@
           </li>
    
           <li class="nav-item @if( Request::segment(2) == 'blog' ) menu-is-opening menu-open @endif">
-            <a href="" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Blog
@@ -153,7 +153,7 @@
             </ul>
           </li>
           <li class="nav-item @if( Request::segment(2) == 'media' ) menu-is-opening menu-open @endif">
-            <a href="" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-image"></i>
               <p>
                 Multi Medya
@@ -177,7 +177,7 @@
           </li>
           <li class="nav-header">Site</li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Ayarlar
@@ -186,31 +186,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('dashboard.settings.general') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Genel</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.settings.contact') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>İletişim</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.settings.advanced') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Email</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.settings.email') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Bakım Modu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.settings.maintenance') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gelişmiş</p>
                 </a>
