@@ -1,7 +1,7 @@
 
 
   <!-- Main Sidebar Container sidebar-dark-primary  -->
-  <aside class="main-sidebar elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <img src="" alt="SMURFWEB Logo" class="brand-image img-circle elevation-3 d-none" style="opacity: .8;background:#fff;">
@@ -69,27 +69,31 @@
                   <p>Sıkça Sorulanlar</p>
                 </a>
               </li>
+  
+              </ul>
+          </li>
+          <li class="nav-item @if( in_array(Request::segment(2), ['sayfalar'])) menu-is-opening menu-open @endif">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Sayfa
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fiyatlar</p>
-                </a>
-              </li>
-              <hr>
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('dashboard.page.index') }}" class="nav-link @if(Request::segment(2) == 'sayfalar' && Request::segment(3) == null) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Sayfalar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('dashboard.page.insert') }}" class="nav-link @if(Request::segment(2) == 'sayfalar' && Request::segment(3) == 'ekle' ) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Yeni Sayfa</p>
                 </a>
               </li>
-             
-              </ul>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">

@@ -12,6 +12,8 @@ use App\Http\Controllers\Back\SliderController;
 use App\Http\Controllers\Back\CustomerCommentsController;
 use App\Http\Controllers\Back\TeamsController;
 use App\Http\Controllers\Back\FAQController;
+use App\Http\Controllers\Back\PagesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +82,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [FAQController::class, 'index'])->name('dashboard.faq.index');
         Route::get('ekle', [FAQController::class, 'insert'])->name('dashboard.faq.insert');
         Route::post('ekle', [FAQController::class, 'post'])->name('dashboard.faq.insert.post');
+    });
+
+    Route::prefix('sayfalar')->group(function () {
+        Route::get('/', [PagesController::class, 'index'])->name('dashboard.page.index');
+        Route::get('ekle', [PagesController::class, 'insert'])->name('dashboard.page.insert');
+        Route::post('ekle', [PagesController::class, 'post'])->name('dashboard.page.insert.post');
     });
 
 });
