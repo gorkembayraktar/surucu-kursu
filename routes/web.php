@@ -128,6 +128,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('genel', [SettingsController::class, 'general'])->name('dashboard.settings.general');
         Route::post('genel', [SettingsController::class, 'general_post'])->name('dashboard.settings.general.post');
         Route::get('iletisim-bilgileri', [SettingsController::class, 'contact'])->name('dashboard.settings.contact');
+        Route::post('iletisim-bilgileri', [SettingsController::class, 'contact_post'])->name('dashboard.settings.contact.post');
         Route::get('gelismis', [SettingsController::class, 'advanced'])->name('dashboard.settings.advanced');
         Route::get('email', [SettingsController::class, 'email'])->name('dashboard.settings.email');
         Route::get('bakim-modu', [SettingsController::class, 'maintenance'])->name('dashboard.settings.maintenance');
