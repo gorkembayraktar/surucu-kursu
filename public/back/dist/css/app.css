@@ -1,4 +1,42 @@
 
+.image-container{
+    position: relative;
+}
+.image-container:hover .features{
+    display:block;
+}
+.image-container .features{
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    display:none;
+}
+
+.image-container .features .remove-btn{
+    right:20px;
+    top:10px;
+    position: absolute;
+}
+
+
+.bb-custom-file{
+    position: relative;
+    overflow: hidden;
+}
+
+.bb-custom-file input[type=file]{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0;
+}
+
+
+
 .blog-title:hover .blog-detail .actions{
     opacity: 1;
 }

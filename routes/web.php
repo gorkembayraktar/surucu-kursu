@@ -16,6 +16,8 @@ use App\Http\Controllers\Back\PagesController;
 use App\Http\Controllers\Back\ServicesController;
 use App\Http\Controllers\Back\BlogController as AdminBlogController;
 
+use App\Http\Controllers\Back\MediaController as AdminMediaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,5 +109,10 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
         Route::get('kategoriler', [AdminBlogController::class, 'category'])->name('dashboard.blog.category');
         Route::post('kategoriler', [AdminBlogController::class, 'category_post'])->name('dashboard.blog.category.post');
+    });
+
+    Route::prefix('media')->group(function () {
+        Route::get('foto-galeri', [AdminMediaController::class, 'photo'])->name('dashboard.media.photo');
+        Route::post('ekle', [AdminMediaController::class, 'photo_post'])->name('dashboard.media.photo.post');
     });
 });
