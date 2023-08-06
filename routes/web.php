@@ -10,6 +10,7 @@ use App\Http\Controllers\Back\DashController;
 use App\Http\Controllers\Back\LoginController;
 use App\Http\Controllers\Back\SliderController;
 use App\Http\Controllers\Back\CustomerCommentsController;
+use App\Http\Controllers\Back\TeamsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +67,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [CustomerCommentsController::class, 'index'])->name('dashboard.customer-comments.index');
         Route::get('ekle', [CustomerCommentsController::class, 'insert'])->name('dashboard.customer-comments.insert');
         Route::post('ekle', [CustomerCommentsController::class, 'post'])->name('dashboard.customer-comments.insert.post');
+    });
+
+    Route::prefix('ekibimiz')->group(function () {
+        Route::get('/', [TeamsController::class, 'index'])->name('dashboard.teams.index');
+        Route::get('ekle', [TeamsController::class, 'insert'])->name('dashboard.teams.insert');
+        Route::post('ekle', [TeamsController::class, 'post'])->name('dashboard.teams.insert.post');
     });
 
 });

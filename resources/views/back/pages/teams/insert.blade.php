@@ -1,15 +1,15 @@
 <x-back-layout>
     <x-slot:title>
-        Slider Oluştur
+        Yeni Üye Ekle
     </x-slot>
-    <form action="{{route('dashboard.slider.insert.post')}}" method="POST" class="form__content">
+    <form action="{{route('dashboard.teams.insert.post')}}" method="POST" class="form__content">
         @csrf
         
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('dashboard.slider.index') }}" class="btn btn-sm btn-default shadow-sm">
+                        <a href="{{ route('dashboard.teams.index') }}" class="btn btn-sm btn-default shadow-sm">
                             <i class="fas fa-arrow-left fa-sm"></i> Geri
                     </a>
                     </div>
@@ -20,35 +20,41 @@
                             </div>
                         @endif
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Başlık(*)</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Ad Soyad (*)</label>
                             <div class="col-sm-9">
-                            <input type="text" name="title" class="form-control" placeholder="title" value="" autocomplete="off" required="">
+                            <input type="text" name="name" class="form-control" placeholder="title" value="{{ old('name') }}" autocomplete="off" >
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Alt Başlık</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Ünvan (*)</label>
                             <div class="col-sm-9">
-                            <input type="text" name="subtitle" class="form-control" placeholder="title" value="" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">İçerik</label>
-                            <div class="col-sm-9">
-                                <textarea name="content" class="form-control"></textarea>
+                            <input type="text" name="subtitle" class="form-control" placeholder="title" value="{{ old('subtitle') }}" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-md-12 p-0">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Düğme</label>
-                                        <input type="text" name="buttonName" class="form-control" value="">
+                                        <label>İnstagram</label>
+                                        <input type="text" name="instagram" class="form-control" value="{{ old('instagram') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Yönlendir</label>
-                                        <input type="text" name="buttonRedirect" class="form-control" value="">
+                                        <label>Facebook</label>
+                                        <input type="text" name="facebook" class="form-control" value="{{ old('facebook') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Twitter/X</label>
+                                        <input type="text" name="twitter" class="form-control" value="{{ old('twitter') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Youtube</label>
+                                        <input type="text" name="youtube" class="form-control" value="{{ old('youtube') }}">
                                     </div>
                                 </div>
                             </div>
