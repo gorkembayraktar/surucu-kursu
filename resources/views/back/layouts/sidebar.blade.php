@@ -198,19 +198,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.advanced') }}" class="nav-link ">
+                <a href="{{ route('dashboard.settings.email') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Email</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.email') }}" class="nav-link ">
+                <a href="{{ route('dashboard.settings.maintenance') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Bakım Modu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.maintenance') }}" class="nav-link ">
+                <a href="{{ route('dashboard.settings.advanced') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gelişmiş</p>
                 </a>
