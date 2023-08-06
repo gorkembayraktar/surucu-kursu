@@ -14,6 +14,8 @@ use App\Http\Controllers\Back\TeamsController;
 use App\Http\Controllers\Back\FAQController;
 use App\Http\Controllers\Back\PagesController;
 use App\Http\Controllers\Back\ServicesController;
+use App\Http\Controllers\Back\BlogController as AdminBlogController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -97,4 +99,13 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::post('ekle', [ServicesController::class, 'post'])->name('dashboard.services.insert.post');
     });
 
+    Route::prefix('blog')->group(function () {
+        Route::get('/', [AdminBlogController::class, 'index'])->name('dashboard.blog.index');
+        Route::get('ekle', [AdminBlogController::class, 'insert'])->name('dashboard.blog.insert');
+        Route::post('ekle', [AdminBlogController::class, 'post'])->name('dashboard.blog.insert.post');
+
+
+        Route::get('kategoriler', [AdminBlogController::class, 'category'])->name('dashboard.blog.category');
+        Route::post('kategoriler', [AdminBlogController::class, 'category_post'])->name('dashboard.blog.category.post');
+    });
 });

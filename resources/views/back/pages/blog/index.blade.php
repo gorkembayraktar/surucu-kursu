@@ -1,15 +1,15 @@
 <x-back-layout>
     <x-slot:title>
-        Hizmetler
+        Blog
     </x-slot>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('dashboard.services.insert') }}" class="btn btn-sm btn-info shadow-sm">
-                        <i class="fas fa-fw fa-plus fa-sm text-white-50"></i> Yeni Hizmet Ekle
+                    <a href="{{ route('dashboard.blog.insert') }}" class="btn btn-sm btn-info shadow-sm">
+                        <i class="fas fa-fw fa-plus fa-sm text-white-50"></i> Yeni Blog Ekle
                    </a>
-                   <span class="float-right">{X} soru-cevap listelendi.</span>
+                   <span class="float-right">{X} blog listelendi.</span>
                    <div class="clearfix"></div>
                 </div>
                 <div class="card-body">
@@ -27,6 +27,7 @@
                             <th style="width: 10px">ID</th>
                             <th>Başlık</th>
                             <th>Yazar</th>
+                            <th>Kategoriler</th>
                             <th>Durum</th>
                             <th>Tarih</th>
                          </tr>
@@ -56,11 +57,13 @@
                             <td>
                                 Beyza Bayrak
                             </td>
+                            <td>Kategoriler</td>
                             <td>
                                 <span class="badge badge-success">Yayınlandı</span>
                             </td>
                             <td>
-                                Tarih
+                               Tarih
+                        
                             </td>
                          </tr>
                       </tbody>

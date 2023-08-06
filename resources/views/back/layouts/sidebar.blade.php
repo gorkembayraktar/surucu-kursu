@@ -121,7 +121,7 @@
             </ul>
           </li>
    
-          <li class="nav-item">
+          <li class="nav-item @if( Request::segment(2) == 'blog' ) menu-is-opening menu-open @endif">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -131,19 +131,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('dashboard.blog.index') }}" class="nav-link @if(Request::segment(3) == null) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Yazılar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.blog.insert') }}" class="nav-link @if(Request::segment(3) == 'ekle') active @endif ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Yeni Yazı</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.blog.category') }}" class="nav-link @if(Request::segment(3) == 'kategoriler') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kategoriler</p>
                 </a>
