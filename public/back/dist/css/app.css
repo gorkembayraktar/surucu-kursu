@@ -1,0 +1,25 @@
+
+.blog-title:hover .blog-detail .actions{
+    opacity: 1;
+}
+
+.blog-detail .actions{
+    transition:all .4s;
+   font-size:12px;
+   opacity:0;
+}
+
+.custom-items{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+.custom-items li{
+    float:left;
+    padding-right:16px;
+    font-size:12px;
+}
+
+.custom-items li a{
+   color:currentColor;
+}

@@ -18,6 +18,8 @@
   <!-- Toastr style -->
   <link rel="stylesheet" href="{{ asset('back') }}/plugins/toastr/toastr.min.css">
 
+  <link rel="stylesheet" href='{{ asset('back/dist/css/app.css') }}'>
+
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="panel/uploads/settings_v/32x32/favicon.png" sizes="32x32">

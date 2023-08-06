@@ -95,7 +95,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item @if( in_array(Request::segment(2), ['hizmetler'])) menu-is-opening menu-open @endif">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-wrench"></i>
               <p>
@@ -105,13 +105,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="{{ route('dashboard.services.index') }}" class="nav-link @if(Request::segment(2) == 'hizmetler' && Request::segment(3) == null) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Hizmetler</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.html" class="nav-link ">
+                <a href="{{ route('dashboard.services.insert') }}" class="nav-link  @if(Request::segment(2) == 'hizmetler' && Request::segment(3) == 'ekle') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Yeni Hizmet</p>
                 </a>

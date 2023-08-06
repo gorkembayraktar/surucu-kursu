@@ -13,6 +13,7 @@ use App\Http\Controllers\Back\CustomerCommentsController;
 use App\Http\Controllers\Back\TeamsController;
 use App\Http\Controllers\Back\FAQController;
 use App\Http\Controllers\Back\PagesController;
+use App\Http\Controllers\Back\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [PagesController::class, 'index'])->name('dashboard.page.index');
         Route::get('ekle', [PagesController::class, 'insert'])->name('dashboard.page.insert');
         Route::post('ekle', [PagesController::class, 'post'])->name('dashboard.page.insert.post');
+    });
+
+    Route::prefix('hizmetler')->group(function () {
+        Route::get('/', [ServicesController::class, 'index'])->name('dashboard.services.index');
+        Route::get('ekle', [ServicesController::class, 'insert'])->name('dashboard.services.insert');
+        Route::post('ekle', [ServicesController::class, 'post'])->name('dashboard.services.insert.post');
     });
 
 });
