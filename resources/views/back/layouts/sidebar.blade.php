@@ -176,7 +176,7 @@
             </ul>
           </li>
           <li class="nav-header">Site</li>
-          <li class="nav-item">
+          <li class="nav-item @if( Request::segment(2) == 'ayarlar' ) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
@@ -186,31 +186,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.general') }}" class="nav-link">
+                <a href="{{ route('dashboard.settings.general') }}" class="nav-link @if(Request::segment(3) == 'genel') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Genel</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.contact') }}" class="nav-link ">
+                <a href="{{ route('dashboard.settings.contact') }}" class="nav-link @if(Request::segment(3) == 'iletisim') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>İletişim</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.email') }}" class="nav-link ">
+                <a href="{{ route('dashboard.settings.email') }}" class="nav-link @if(Request::segment(3) == 'email') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Email</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.maintenance') }}" class="nav-link ">
+                <a href="{{ route('dashboard.settings.maintenance') }}" class="nav-link @if(Request::segment(3) == 'bakim-modu') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Bakım Modu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.advanced') }}" class="nav-link ">
+                <a href="{{ route('dashboard.settings.advanced') }}" class="nav-link @if(Request::segment(3) == 'gelismis') active @endif ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gelişmiş</p>
                 </a>

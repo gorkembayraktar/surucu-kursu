@@ -9,8 +9,9 @@ use App\Http\Requests\SettingsGeneralPostRequest as SGRequest;
 use App\Http\Requests\SettingsContactPostRequest as SCRequest;
 use App\Http\Requests\SettingsAdvancedPostRequest as SARequest;
 
-use App\Http\Requests\SettingsMaintenancePostRequest as SMRequest;
 
+use App\Http\Requests\SettingsMaintenancePostRequest as SMRequest;
+use App\Http\Requests\SettingsEmailPostRequest as SERequest;
 class SettingsController extends Controller
 {
     public function general(){
@@ -35,7 +36,11 @@ class SettingsController extends Controller
         return redirect()->back()->withInput();
     }
     public function email(){
-        
+        return view('back.pages.settings.email');
+    }
+    public function email_post(SERequest $request){
+        toastr()->error('posted');
+        return redirect()->back()->withInput();
     }
     public function maintenance(){
         return view('back.pages.settings.maintenance');
