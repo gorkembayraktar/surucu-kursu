@@ -128,6 +128,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [ServicesController::class, 'index'])->name('dashboard.services.index');
         Route::get('ekle', [ServicesController::class, 'insert'])->name('dashboard.services.insert');
         Route::post('ekle', [ServicesController::class, 'post'])->name('dashboard.services.insert.post');
+       
+        Route::get('{id}/duzenle', [ServicesController::class, 'edit'])->name('dashboard.services.edit');
+        Route::post('{id}/duzenle', [ServicesController::class, 'edit_post'])->name('dashboard.services.edit.post');
+        Route::post('{id}/sil', [ServicesController::class, 'delete_post'])->name('dashboard.services.delete');
+
+    
     });
 
     Route::prefix('blog')->group(function () {

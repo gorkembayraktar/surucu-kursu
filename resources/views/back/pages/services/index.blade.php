@@ -9,15 +9,15 @@
                     <a href="{{ route('dashboard.services.insert') }}" class="btn btn-sm btn-info shadow-sm">
                         <i class="fas fa-fw fa-plus fa-sm text-white-50"></i> Yeni Hizmet Ekle
                    </a>
-                   <span class="float-right">{X} soru-cevap listelendi.</span>
+                   <span class="float-right">{{ $services->count() }} kayıt listelendi.</span>
                    <div class="clearfix"></div>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <ul class="custom-items">
-                            <li><a href="?status=all">Tümü (6)</a></li>
-                            <li><a href="?status=publish">Yayımlanmış (6)</a></li>
-                            <li><a href="?status=draft">Taslak (0)</a></li>
+                            <li><a href="?status=all">Tümü ({{ $counter->total }})</a></li>
+                            <li><a href="?status=publish">Yayımlanmış ({{ $counter->publish }})</a></li>
+                            <li><a href="?status=draft">Taslak ({{ $counter->draft }})</a></li>
                         </ul>
                     </div>
                    <div class="clearfix"></div>
@@ -32,48 +32,55 @@
                          </tr>
                       </thead>
                       <tbody>
+                        @foreach ($services as $service)
                          <tr>
-                            <td class="text-center">1
+                            <td class="text-center">{{ $service->id }}
                             </td>
                             <td class="blog-title">
                                 <a href="">
-                                    Tırnak Sanatı
+                                    {{ $service->title }}
                                 </a>
                                 <div class="blog-detail">
-                                    <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electronic typesetting. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of </p>
-                                    <p>
-                                    </p>
+                                    {{ strip_tags($service->content) }}
                                     <div class="actions">
-                                       <a href="https://guzellik.gorkembayraktar.com/dashboard/hizmetler/duzenle/25">Düzenle</a>
+                                       <a href="{{ route('dashboard.services.edit', $service->id)}}">Düzenle</a>
                                        |
-                                       <a href="https://guzellik.gorkembayraktar.com/dashboard/hizmetler/cop/25" class="text-danger">Çöp</a>
+                                       <a href="" class="text-danger">Çöp</a>
                                        |
-                                       <a href="https://guzellik.gorkembayraktar.com/hizmetlerimiz/tirnak-sanati" target="_blank">Görüntüle</a>
+                                       <a href="" target="_blank">Görüntüle</a>
                                     </div>
                                  </div>
 
                             </td>
                             <td>
-                                Beyza Bayrak
+                                {{  $service->user->name }}
                             </td>
                             <td>
-                                <span class="badge badge-success">Yayınlandı</span>
+                                @switch($service->publish)
+                                    @case(\App\Enum\ServicesEnum::PUBLISHED)
+                                        <span class="badge badge-success">Yayınlandı</span>
+                                        @break
+                                        @case(\App\Enum\ServicesEnum::DRAFT)
+                                            <span class="badge badge-info">Taslak</span>
+                                        @break
+                                        @case(\App\Enum\ServicesEnum::INEDITED)
+                                            <span class="badge badge-secondary">Yayınlanmadı</span>
+                                        @break
+                                    @default
+                                        
+                                @endswitch
+                               
                             </td>
                             <td>
-                                Tarih
+                                {{ $service->created_at }}
                             </td>
                          </tr>
+                         @endforeach
                       </tbody>
                    </table>
                 </div>
                 <div class="card-footer clearfix">
-                   <ul class="pagination pagination-sm m-0 float-right">
-                      <li class="page-item"><a class="page-link" href="#">«</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">»</a></li>
-                   </ul>
+                    {{ $services->links('vendor.pagination.default') }}
                 </div>
              </div>
             <!-- /.card -->
