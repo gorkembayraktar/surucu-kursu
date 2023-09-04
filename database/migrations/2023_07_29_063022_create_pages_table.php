@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->string('slug');
-            $table->string('sub_title');
-            $table->string('image');
-            $table->text('content');
-            $table->string('button_name');
-            $table->string('button_redirect');
-            $table->integer('fixed');
-            $table->boolean('active');
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('sub_title')->nullable();
+            $table->string('image')->nullable();
+            $table->text('content')->nullable();
+            $table->string('button_name')->nullable();
+            $table->string('button_redirect')->nullable();
+            $table->integer('fixed')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

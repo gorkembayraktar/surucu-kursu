@@ -105,6 +105,11 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [FAQController::class, 'index'])->name('dashboard.faq.index');
         Route::get('ekle', [FAQController::class, 'insert'])->name('dashboard.faq.insert');
         Route::post('ekle', [FAQController::class, 'post'])->name('dashboard.faq.insert.post');
+
+        Route::get('{id}/duzenle', [FAQController::class, 'edit'])->name('dashboard.faq.edit');
+        Route::post('{id}/duzenle', [FAQController::class, 'edit_post'])->name('dashboard.faq.edit.post');
+        Route::post('{id}/sil', [FAQController::class, 'delete_post'])->name('dashboard.faq.delete');
+
     });
 
     Route::prefix('sayfalar')->group(function () {
