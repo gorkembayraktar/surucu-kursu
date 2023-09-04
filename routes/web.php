@@ -94,6 +94,11 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [TeamsController::class, 'index'])->name('dashboard.teams.index');
         Route::get('ekle', [TeamsController::class, 'insert'])->name('dashboard.teams.insert');
         Route::post('ekle', [TeamsController::class, 'post'])->name('dashboard.teams.insert.post');
+
+        Route::get('{id}/duzenle', [TeamsController::class, 'edit'])->name('dashboard.teams.edit');
+        Route::post('{id}/duzenle', [TeamsController::class, 'edit_post'])->name('dashboard.teams.edit.post');
+        Route::post('{id}/sil', [TeamsController::class, 'delete_post'])->name('dashboard.teams.delete');
+        
     });
 
     Route::prefix('sikca-sorulanlar')->group(function () {
