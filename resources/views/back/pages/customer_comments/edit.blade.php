@@ -1,8 +1,8 @@
 <x-back-layout>
     <x-slot:title>
-        Müşteri Yorumu Oluştur
+        Müşteri Yorumu Düzenle
     </x-slot>
-    <form action="{{route('dashboard.customer-comments.insert.post')}}" method="POST" class="form__content" enctype="multipart/form-data">
+    <form action="{{route('dashboard.customer-comments.edit.post', $comment->id)}}" method="POST" class="form__content" enctype="multipart/form-data">
         @csrf
         
         <div class="row">
@@ -22,31 +22,29 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Adı Soyadı(*)</label>
                             <div class="col-sm-9">
-                            <input type="text" name="name" class="form-control" placeholder="title" value="{{ old('name') }}" autocomplete="off" required="">
+                            <input type="text" name="name" class="form-control" placeholder="title" value="{{ old('name', $comment->name) }}" autocomplete="off" required="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Ünvan</label>
                             <div class="col-sm-9">
-                            <input type="text" name="subname" class="form-control" placeholder="title" value="{{ old('subname') }}" autocomplete="off">
+                            <input type="text" name="subname" class="form-control" placeholder="title" value="{{ old('subname', $comment->subname) }}" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Derecelendirme (Yıldız Sayısı)</label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="star">
-                                    <option value="1">✰</option>
-                                    <option value="2">✰✰</option>
-                                    <option value="3">✰✰✰</option>
-                                    <option value="4">✰✰✰✰</option>
-                                    <option value="5" selected="">✰✰✰✰✰</option>
+                                    @for($i = 1; $i <=5;$i++)
+                                    <option value="{{ $i }}" @selected($comment->star == $i)>{{ str_repeat('✰', $i) }}</option>
+                                    @endfor
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Yorumu</label>
                             <div class="col-sm-9">
-                                <textarea name="comment" class="form-control"></textarea>
+                                <textarea name="comment" class="form-control">{{ old('comment', $comment->comment) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -64,7 +62,11 @@
                 <div class="card">
                     <label for="inputEmail3" class="col-form-label px-2">Resim Seçimi</label>
                     <div class="position-relative">
+                        @if( $comment->image )
+                        <img width="100%" id="preview" height="200" src="{{ asset( $comment->image ) }}">
+                        @else
                         <img width="100%" id="preview" height="200" src="{{ asset('') }}default-image.png">
+                        @endif
                         <input type="file" name="profile_image" id="profile_image" class="form-control" style="
                             width: 100%;
                             height: 100%;

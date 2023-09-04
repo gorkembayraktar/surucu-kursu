@@ -23,7 +23,7 @@ class CustomerCommentsPostRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'title' => 'required'
+            'comment' => 'required'
         ];
     }
 }

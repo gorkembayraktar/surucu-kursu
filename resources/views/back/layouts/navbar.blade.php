@@ -53,7 +53,11 @@
        <!-- User Dropdown Menu -->
        <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
+          @if( Auth::user()->profile_photo_path )
+            <img src=" {{ asset('back')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" width="25" alt="User Image">
+          @else
           <i class="far fa-user"></i>
+          @endif
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="" class="dropdown-item">

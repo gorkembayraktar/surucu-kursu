@@ -82,6 +82,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [CustomerCommentsController::class, 'index'])->name('dashboard.customer-comments.index');
         Route::get('ekle', [CustomerCommentsController::class, 'insert'])->name('dashboard.customer-comments.insert');
         Route::post('ekle', [CustomerCommentsController::class, 'post'])->name('dashboard.customer-comments.insert.post');
+
+        Route::get('{id}/duzenle', [CustomerCommentsController::class, 'edit'])->name('dashboard.customer-comments.edit');
+        Route::post('{id}/duzenle', [CustomerCommentsController::class, 'edit_post'])->name('dashboard.customer-comments.edit.post');
+        Route::post('{id}/sil', [CustomerCommentsController::class, 'delete_post'])->name('dashboard.customer-comments.delete');
+        
+        Route::post('toggle', [CustomerCommentsController::class, 'toggle_post'])->name('dashboard.customer-comments.toggle.post');
     });
 
     Route::prefix('ekibimiz')->group(function () {

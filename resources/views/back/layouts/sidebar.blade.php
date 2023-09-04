@@ -17,7 +17,7 @@
         </div>
         <div class="info text-info">
           <a href="" class="d-block">
-          TEST ACCOUNT
+            {{ Auth::user()->name }}
          </a>
         </div>
       </div>

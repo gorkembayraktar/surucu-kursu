@@ -11,7 +11,7 @@
                    </a>
                 </div>
                 <div class="card-body">
-                   <table class="table table-bordered">
+                   <table class="table table-bordered table-fit">
                       <thead>
                          <tr>
                             <th style="width: 10px">Öncelik</th>
@@ -24,51 +24,117 @@
                          </tr>
                       </thead>
                       <tbody>
+                        @foreach($comments as $comment)
                          <tr>
                             <td class="text-center">
                                 <i class="fas fa-arrows-alt fa-sm "></i>
                             </td>
-                            <td></td>
-                            <td>
-                                Beyza Bayrak
+                            <td style="width:1px; white-space:nowrap;">
+                                @if($comment->image)
+                                <img src="{{ asset($comment->image) }}" class="elevation-2" alt="Yorum Resim" width="70">
+                                @endif
                             </td>
-                            <td>Veli</td>
-                            <td>✰ ✰ ✰ ✰ ✰</td>
                             <td>
+                                {{ $comment->name }}
+                            </td>
+                            <td> {{ $comment->subname }}</td>
+                            <td> {{ str_repeat('✰', $comment->star) }}</td>
+                            <td style="width:1px; white-space:nowrap;">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success cursor-pointer text-center">
-                                    <input type="checkbox" class="custom-control-input" id="row-editable-30" >
-                                    <label class="custom-control-label" for="row-editable-30"></label>
+                                    <input type="checkbox" class="custom-control-input" id="row-editable-{{ $comment->id }}" @checked( $comment->active ) data-id="{{ $comment->id }}">
+                                    <label class="custom-control-label" for="row-editable-{{ $comment->id }}"></label>
                                 </div>
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" data-id="30" class="btn btn-outline-info btn-sm update-button" data-placement="bottom" title="Bu Kaydı Düzenle">
+                                    <a href="{{ route('dashboard.customer-comments.edit', $comment->id) }}" data-id="{{ $comment->id }}" class="btn btn-outline-info btn-sm update-button" data-placement="bottom" title="Bu Kaydı Düzenle">
                                         <i class="fa fa-edit"></i>
-                                    </button>
-                                    <button type="button" data-id="30" class="btn btn-outline-danger btn-sm delete-button" data-placement="bottom" title="Bu Kaydı Sil">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                    </a>
+                                    <form action="{{route('dashboard.customer-comments.delete', $comment->id) }}" method="POST" class="delete-form">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-danger btn-sm delete-button" data-placement="bottom" title="Bu Kaydı Sil">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form
+                                  
                                 </div>
                         
                             </td>
                          </tr>
+                         @endforeach
                       </tbody>
                    </table>
                 </div>
                 <div class="card-footer clearfix">
-                   <ul class="pagination pagination-sm m-0 float-right">
-                      <li class="page-item"><a class="page-link" href="#">«</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">»</a></li>
-                   </ul>
+                    {{ $comments->links('vendor.pagination.default') }}
                 </div>
              </div>
             <!-- /.card -->
         </div>
         <!-- /.col -->
     </div>
+
+    <x-slot:style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.26/sweetalert2.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </x-slot>
+
+    <x-slot:script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.26/sweetalert2.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            $(".delete-form").submit(submit);
+
+            async function submit(e){
+                 e.preventDefault();
+
+                 const isConfirmed =  await new Promise(promise);
+                 
+                 isConfirmed && e.target.submit();
+            }
+
+            function promise(resolve, reject){
+                Swal.fire({
+                    title: 'Müşteri yorumunu kaldırmak istediğinize emin misiniz?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Vazgeç',
+                    denyButtonText: `Sil`,
+                }).then((result) => {
+                    resolve( result.isDenied );
+                });
+            }
+
+            $(".custom-control-input").change(function(){
+                $(this).prop('disabled', true);
+                const { section, id} = this.dataset;
+                const status = this.checked;
+                let item = $(this);
+                const csrf = $("#csrf").attr('data-value'); 
+                ajax_api({
+                    url:"{{ route('dashboard.customer-comments.toggle.post')  }}",
+                    method:'post',
+                    data:{
+                        _token: csrf,
+                        id,
+                        status: status ? 1 : 0
+                    }
+                }).then(function(result){
+
+                    if(result.status == 200){
+                        toastr.success("Başarılı şekilde güncellendi ");
+                        return;
+                    }
+
+                    toastr.error(`Hata`, 'Bir sorun oluştu. Kod:' + result.status, []);
+                }).catch(function(){
+                    toastr.error(`Hata`, 'Bir sorun oluştu.', []);
+                }).finally(function(){
+                    item.prop('disabled', false);
+                });
+
+                
+            });
+
+        </script>
+    </x-slot>
 </x-back-layout>
 
 

@@ -2,7 +2,7 @@
     <x-slot:title>
         Slider Ayarları
     </x-slot>
-    <div class="row" id="csrf" data-value="{{ csrf_token() }}">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -29,7 +29,7 @@
                             <td class="text-center">
                                 <i class="fas fa-arrows-alt fa-sm "></i>
                             </td>
-                            <td>
+                            <td style="width:1px; white-space:nowrap;">
                                 @if( $slider->image != null )
                                 <img src="{{ asset( $slider->image) }} " width="50" height="50" />
                                 @else
@@ -42,7 +42,7 @@
                             <td>{{ $slider->sub_title }}</td>
                             <td>{{ $slider->content }}
                             </td>
-                            <td>
+                            <td style="width:1px; white-space:nowrap;">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success cursor-pointer text-center">
                                     <input type="checkbox" class="custom-control-input" id="row-editable-{{ $slider->id }}" @checked( $slider->active ) data-id="{{ $slider->id }}">
                                     <label class="custom-control-label" for="row-editable-{{ $slider->id }}" ></label>
