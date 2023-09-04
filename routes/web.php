@@ -116,6 +116,12 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', [PagesController::class, 'index'])->name('dashboard.page.index');
         Route::get('ekle', [PagesController::class, 'insert'])->name('dashboard.page.insert');
         Route::post('ekle', [PagesController::class, 'post'])->name('dashboard.page.insert.post');
+
+        Route::get('{id}/duzenle', [PagesController::class, 'edit'])->name('dashboard.page.edit');
+        Route::post('{id}/duzenle', [PagesController::class, 'edit_post'])->name('dashboard.page.edit.post');
+        Route::post('{id}/sil', [PagesController::class, 'delete_post'])->name('dashboard.page.delete');
+
+        Route::post('toggle', [PagesController::class, 'toggle_post'])->name('dashboard.page.toggle.post');
     });
 
     Route::prefix('hizmetler')->group(function () {

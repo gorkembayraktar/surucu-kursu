@@ -1,8 +1,8 @@
 <x-back-layout>
     <x-slot:title>
-        Sayfa Oluştur
+        Sayfa Düzenle
     </x-slot>
-    <form action="{{route('dashboard.page.insert.post')}}" method="POST" class="form__content" enctype="multipart/form-data">
+    <form action="{{route('dashboard.page.edit.post', $page->id)}}" method="POST" class="form__content" enctype="multipart/form-data">
         @csrf
         
         <div class="row">
@@ -22,14 +22,14 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Başlık(*)</label>
                             <div class="col-sm-9">
-                            <input type="text" name="title" class="form-control" value="{{ old('title') }}" autocomplete="off">
+                            <input type="text" name="title" class="form-control" value="{{ old('title', $page->title) }}" autocomplete="off">
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">İçerik</label>
                             <div class="col-sm-9">
-                                <textarea name="content" class="form-control" id="summernote">{{ old('content') }}</textarea>
+                                <textarea name="content" class="form-control" id="summernote">{{ old('content',  $page->content) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,11 @@
                 <div class="card">
                     <label for="inputEmail3" class="col-form-label px-2">Resim Seçimi</label>
                     <div class="position-relative">
-                        <img width="100%" id="preview" height="200" src="{{ asset('') }}default-image.png">
+                        @if($page->image != null)
+                            <img width="100%" id="preview" height="200" src="{{ asset($page->image) }}">
+                        @else 
+                            <img width="100%" id="preview" height="200" src="{{ asset('') }}default-image.png">
+                        @endif
                         <input type="file" name="image" id="image" class="form-control" style="
                             width: 100%;
                             height: 100%;
