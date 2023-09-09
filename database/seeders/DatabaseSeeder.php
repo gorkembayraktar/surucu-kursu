@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::insert([
             'name' => 'Görkem Bayraktar',
             'email' => 'byrktr@gmail.com',
+            'verified' => true,
             'email_verified_at' => now(),
             'password' => Hash::make('test123'), 
             'type' => 'admin',
@@ -66,6 +67,12 @@ class DatabaseSeeder extends Seeder
                 'autoload' => (boolean)$values[1]
             ]);
         endforeach;
+
+        \App\Models\BlogCategory::insert([
+            "title" => "Genel",
+            "slug" => "genel",
+            "id" => 1
+        ]);
 
         
     }

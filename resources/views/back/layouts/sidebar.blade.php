@@ -131,7 +131,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('dashboard.blog.index') }}" class="nav-link @if(Request::segment(3) == null) active @endif">
+                <a href="{{ route('dashboard.blog.index') }}" class="nav-link @if( Request::segment(2) == 'blog' && Request::segment(3) == null) active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Yazılar</p>
                 </a>

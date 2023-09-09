@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('blog', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('slug');
-            $table->string('title');
-            $table->text('content');
-            $table->string('image');
-            $table->integer('publish');
+            $table->string('slug')->nullable();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
+            $table->string('image')->nullable();
+            $table->enum('publish', ['draft', 'published', 'inedited', 'trash'])->default('draft');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -132,7 +132,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('{id}/duzenle', [ServicesController::class, 'edit'])->name('dashboard.services.edit');
         Route::post('{id}/duzenle', [ServicesController::class, 'edit_post'])->name('dashboard.services.edit.post');
         Route::post('{id}/cop', [ServicesController::class, 'trash_post'])->name('dashboard.services.trash');
-        Route::post('{id}/sil', [ServicesController::class, 'delete_post'])->name('dashboard.services.delete');
+       
         Route::post('{id}/action', [ServicesController::class, 'action_post'])->name('dashboard.services.action');
     });
 
@@ -141,9 +141,18 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('ekle', [AdminBlogController::class, 'insert'])->name('dashboard.blog.insert');
         Route::post('ekle', [AdminBlogController::class, 'post'])->name('dashboard.blog.insert.post');
 
+        Route::get('{id}/duzenle', [AdminBlogController::class, 'edit'])->name('dashboard.blog.edit');
+        Route::post('{id}/duzenle', [AdminBlogController::class, 'edit_post'])->name('dashboard.blog.edit.post');
+
+        Route::post('{id}/cop', [AdminBlogController::class, 'trash_post'])->name('dashboard.blog.trash');
+       
+        Route::post('{id}/action', [AdminBlogController::class, 'action_post'])->name('dashboard.blog.action');
+        Route::post('kategoriler/duzenle', [AdminBlogController::class, 'category_edit'])->name('dashboard.blog.category.edit');
 
         Route::get('kategoriler', [AdminBlogController::class, 'category'])->name('dashboard.blog.category');
         Route::post('kategoriler', [AdminBlogController::class, 'category_post'])->name('dashboard.blog.category.post');
+        Route::post('kategoriler/{id}/sil', [AdminBlogController::class, 'category_delete_post'])->name('dashboard.blog.category.delete.post');
+        Route::post('kategoriler/toggle', [AdminBlogController::class, 'category_toggle'])->name('dashboard.blog.category.toggle.post');
     });
 
     Route::prefix('media')->group(function () {

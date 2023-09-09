@@ -1,8 +1,8 @@
 <x-back-layout>
     <x-slot:title>
-        Blog Oluştur
+        Blog Güncelle
     </x-slot>
-    <form action="{{route('dashboard.blog.insert.post')}}" method="POST" class="form__content" enctype="multipart/form-data">
+    <form action="{{route('dashboard.blog.edit.post', $blog->id)}}" method="POST" class="form__content" enctype="multipart/form-data">
         @csrf
         
         <div class="row">
@@ -22,14 +22,14 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Başlık(*)</label>
                             <div class="col-sm-9">
-                            <input type="text" name="title" class="form-control" value="{{ old('title') }}" autocomplete="off">
+                            <input type="text" name="title" class="form-control" value="{{ old('title', $blog->title) }}" autocomplete="off">
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">İçerik</label>
                             <div class="col-sm-9">
-                                <textarea name="content" class="form-control" id="summernote">{{ old('content') }}</textarea>
+                                <textarea name="content" class="form-control" id="summernote">{{ old('content', $blog->content) }}</textarea>
                             </div>
                         </div>
             
@@ -52,7 +52,7 @@
                             <div class="col-sm-8">
                                 <select data-placeholder="Kategoriler" multiple class="chosen-select form-control" name="kategori[]">
                                     @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    <option value="{{ $category->id }}" @selected( $blog->has_category($category->id) )>{{ $category->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -62,7 +62,7 @@
                             <div class="col-sm-8">
                                 <select data-placeholder="Kullanıcılar"  class="form-control-sm" name="user_id">
                                     @foreach($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}" @selected( $user->id == $blog->user_id )>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -72,8 +72,8 @@
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Durum</label>
                             <div class="col-sm-8">
                                 <select name="publish" class="form-control">
-                                    <option value="{{ \App\Enum\ServicesEnum::PUBLISHED->value }}"  @selected(old('publish') == \App\Enum\ServicesEnum::PUBLISHED->value) >Yayınla</option>
-                                    <option value="{{ \App\Enum\ServicesEnum::DRAFT->value }}" @selected(old('publish') == \App\Enum\ServicesEnum::DRAFT->value) >Taslak Kaydet</option>
+                                    <option value="{{ \App\Enum\ServicesEnum::PUBLISHED->value }}"  @selected(old('publish', $blog->publish->value) == \App\Enum\ServicesEnum::PUBLISHED->value) >Yayınla</option>
+                                    <option value="{{ \App\Enum\ServicesEnum::DRAFT->value }}" @selected(old('publish',  $blog->publish->value) == \App\Enum\ServicesEnum::DRAFT->value) >Taslak Kaydet</option>
                                 </select>
                             </div>
                         </div>
@@ -85,7 +85,11 @@
                    
                     <label for="inputEmail3" class="col-form-label px-2">Resim Seçimi</label>
                     <div class="position-relative">
+                        @if( $blog->image )
+                        <img width="100%" id="preview" height="200" src="{{ asset( $blog->image ) }}">
+                        @else
                         <img width="100%" id="preview" height="200" src="{{ asset('') }}default-image.png">
+                        @endif
                         <input type="file" name="image" id="image" class="form-control" style="
                             width: 100%;
                             height: 100%;
