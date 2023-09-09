@@ -131,9 +131,9 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
        
         Route::get('{id}/duzenle', [ServicesController::class, 'edit'])->name('dashboard.services.edit');
         Route::post('{id}/duzenle', [ServicesController::class, 'edit_post'])->name('dashboard.services.edit.post');
+        Route::post('{id}/cop', [ServicesController::class, 'trash_post'])->name('dashboard.services.trash');
         Route::post('{id}/sil', [ServicesController::class, 'delete_post'])->name('dashboard.services.delete');
-
-    
+        Route::post('{id}/action', [ServicesController::class, 'action_post'])->name('dashboard.services.action');
     });
 
     Route::prefix('blog')->group(function () {

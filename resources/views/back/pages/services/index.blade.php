@@ -18,6 +18,9 @@
                             <li><a href="?status=all">Tümü ({{ $counter->total }})</a></li>
                             <li><a href="?status=publish">Yayımlanmış ({{ $counter->publish }})</a></li>
                             <li><a href="?status=draft">Taslak ({{ $counter->draft }})</a></li>
+                            @if( $counter->trash > 0)
+                            <li><a href="?status=trash">Çöp ({{ $counter->trash }})</a></li>
+                            @endif
                         </ul>
                     </div>
                    <div class="clearfix"></div>
@@ -45,9 +48,20 @@
                                     <div class="actions">
                                        <a href="{{ route('dashboard.services.edit', $service->id)}}">Düzenle</a>
                                        |
-                                       <a href="" class="text-danger">Çöp</a>
-                                       |
                                        <a href="" target="_blank">Görüntüle</a>
+                                    
+                                       @if($service->publish === \App\Enum\ServicesEnum::TRASH)
+                                       <form action="{{route('dashboard.services.action', $service->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" name="action" value="save" class="btn btn-outline-info btn-sm shadow-sm text-sm">Kurtar</button>
+                                            <button type="submit" name="action" value="delete" class="btn btn-outline-danger btn-sm shadow-sm text-sm"><i class="fa fa-trash"></i> Sil</button>
+                                        </form
+                                       @else
+                                       <form action="{{route('dashboard.services.trash', $service->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-outline-danger btn-sm shadow-sm text-sm"><i class="fa fa-trash"></i> Çöp</button>
+                                        </form
+                                        @endif
                                     </div>
                                  </div>
 
@@ -65,6 +79,9 @@
                                         @break
                                         @case(\App\Enum\ServicesEnum::INEDITED)
                                             <span class="badge badge-secondary">Yayınlanmadı</span>
+                                        @break
+                                        @case(\App\Enum\ServicesEnum::TRASH)
+                                        <span class="badge badge-danger">Arşivlendi</span>
                                         @break
                                     @default
                                         

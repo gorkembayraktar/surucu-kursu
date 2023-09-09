@@ -137,7 +137,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.blog.insert') }}" class="nav-link @if(Request::segment(3) == 'ekle') active @endif ">
+                <a href="{{ route('dashboard.blog.insert') }}" class="nav-link @if( Request::segment(2) == 'blog' && Request::segment(3) == 'ekle') active @endif ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Yeni Yazı</p>
                 </a>

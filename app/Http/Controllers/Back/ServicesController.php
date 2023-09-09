@@ -20,18 +20,22 @@ class ServicesController extends Controller
         $services = Service::orderBy('id', 'desc');
 
         $counter = (object)[
-            "total" => Service::count(),
+            "total" => Service::whereNot('publish', \App\Enum\ServicesEnum::TRASH)->count(),
             "publish" => Service::where("publish", \App\Enum\ServicesEnum::PUBLISHED)->count(),
-            "draft" => Service::where("publish", \App\Enum\ServicesEnum::DRAFT)->count()
+            "draft" => Service::where("publish", \App\Enum\ServicesEnum::DRAFT)->count(),
+            "trash" => Service::where("publish", \App\Enum\ServicesEnum::TRASH)->count()
         ];
 
         $filter = [
-            "publish" => \App\Enum\ServicesEnum::PUBLISHED ,
-            "draft" => \App\Enum\ServicesEnum::DRAFT
+            "publish" => \App\Enum\ServicesEnum::PUBLISHED,
+            "draft" => \App\Enum\ServicesEnum::DRAFT,
+            "trash" => \App\Enum\ServicesEnum::TRASH
         ];
         
         if( $request->status && !empty($filter[ $request->status ]) ){
             $services->where('publish', $filter[ $request->status ]);
+        }else{
+            $services->whereNot('publish', \App\Enum\ServicesEnum::TRASH);
         }
 
         $services = $services->paginate(10);
@@ -127,5 +131,30 @@ class ServicesController extends Controller
 
         return redirect()->route('dashboard.services.insert')->withError('Bir sorun oluştu.');
     
+    }
+
+    public function trash_post(int $id){
+        Service::where("id", $id)->update(['publish' => \App\Enum\ServicesEnum::TRASH]);
+        return redirect()->route('dashboard.services.index')->withSuccess('İşlem başarılı şekilde gerçekleşti.');
+    }
+
+    public function action_post(Request $request, int $id){
+        $service = Service::find($id);
+        if($service):
+            switch($request->action):
+                case 'save':
+                    $service->publish = \App\Enum\ServicesEnum::DRAFT;
+                    $service->save();
+                break;
+
+                case 'delete':
+                    if( !empty($service->image) && file_exists( public_path( $service->image ) )){
+                        @unlink( public_path( $service->image) );
+                    }
+                    $service->delete();
+                break;
+            endswitch;
+        endif;
+        return redirect()->back();
     }
 }
