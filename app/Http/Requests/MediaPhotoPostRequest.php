@@ -24,7 +24,7 @@ class MediaPhotoPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required'
+            'image' => 'mimes:jpeg,png,gif,jpg'
         ];
     }
 }
