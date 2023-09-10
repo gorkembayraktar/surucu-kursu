@@ -22,13 +22,13 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">CSS Kodlarınız  </label>
                             <div class="col-sm-8 align-self-center">
-                                <textarea type="text" name="css" class="form-control" placeholder=".example {font-size:1rem;}"></textarea>
+                                <textarea type="text" name="css" class="form-control" placeholder=".example {font-size:1rem;}">{{ old('css', $settings->get('html_css')) }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Javascript Kodlarınız  </label>
                             <div class="col-sm-8 align-self-center">
-                                <textarea type="text" name="js" class="form-control" placeholder="document.body.onclick = function(){};"></textarea>
+                                <textarea type="text" name="js" class="form-control" placeholder="document.body.onclick = function(){};">{{ old('js', $settings->get('html_js')) }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -39,7 +39,7 @@
                             </small>
                             </label>
                             <div class="col-sm-8 align-self-center">
-                                <textarea type="text" name="head" class="form-control"></textarea>
+                                <textarea type="text" name="head" class="form-control">{{ old('head', $settings->get('html_head')) }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -50,7 +50,7 @@
                                 </small> 
                             </label>
                             <div class="col-sm-8 align-self-center">
-                                <textarea type="text" name="body" class="form-control"></textarea>
+                                <textarea type="text" name="body" class="form-control">{{ old('body', $settings->get('html_body')) }}</textarea>
                             </div>
                         </div>
                         

@@ -82,8 +82,19 @@ class SettingsController extends Controller
         return view('back.pages.settings.advanced');
     }
     public function advanced_post(SARequest $request){
-        toastr()->error('posted');
-        return redirect()->back()->withInput();
+      
+        $data = [
+            "html_head" => $request->head,
+            "html_css" => $request->js,
+            "html_js" => $request->css,
+            "html_body" => $request->body,
+        ];
+
+        foreach($data as $key => $value):
+            Settings::updateOrCreate(["key" => $key], ["value" => $value]);
+        endforeach;
+
+        return redirect()->route('dashboard.settings.advanced')->withSuccess('Güncellendi.');
     }
     public function email(){
         return view('back.pages.settings.email');
