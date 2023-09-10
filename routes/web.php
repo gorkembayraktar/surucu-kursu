@@ -38,29 +38,6 @@ use App\Http\Controllers\Back\ProfileController;
 */
 
 
-Route::middleware(['isMaintenance', 'menu'])->group(function () {
-
-    Route::get('/', [HomeController::class, 'main'])->name('index');
-
-    Route::get('ekibimiz', [HomeController::class, 'team'])->name('team');
-    Route::get('sikca-sorulanlar', [HomeController::class, 'fqa'])->name('fqa');
-
-    Route::get('hizmetlerimiz',[ServiceController::class, 'services'])->name('services');
-    Route::get('hizmet/{slug}',[ServiceController::class, 'service_single'])->name('service-single');
-
-    Route::get('foto-galeri',[MediaController::class, 'gallery_photo'])->name('gallery-photo');
-    Route::get('video-galeri',[MediaController::class, 'gallery_media'])->name('gallery-media');
-
-
-    Route::get('blog',[BlogController::class, 'list'])->name('blog');
-    Route::get('blog/{slug}',[BlogController::class, 'single'])->name('blog-single');
-
-    Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
-
-    Route::get('{slug}', [PageController::class, 'page'])->name('page-single');
-});
-
-
 // Yönetim paneli
 Route::middleware('isLogin')->group(function(){
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -203,4 +180,30 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
 
 
+});
+
+
+
+
+
+Route::middleware(['isMaintenance', 'menu'])->group(function () {
+
+    Route::get('/', [HomeController::class, 'main'])->name('index');
+
+    Route::get('ekibimiz', [HomeController::class, 'team'])->name('team');
+    Route::get('sikca-sorulanlar', [HomeController::class, 'fqa'])->name('fqa');
+
+    Route::get('hizmetlerimiz',[ServiceController::class, 'services'])->name('services');
+    Route::get('hizmet/{slug}',[ServiceController::class, 'service_single'])->name('service-single');
+
+    Route::get('foto-galeri',[MediaController::class, 'gallery_photo'])->name('gallery-photo');
+    Route::get('video-galeri',[MediaController::class, 'gallery_media'])->name('gallery-media');
+
+
+    Route::get('blog',[BlogController::class, 'list'])->name('blog');
+    Route::get('blog/{slug}',[BlogController::class, 'single'])->name('blog-single');
+
+    Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
+
+    Route::get('{slug}', [PageController::class, 'page'])->name('page-single');
 });
