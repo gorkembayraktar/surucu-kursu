@@ -67,14 +67,47 @@ class MediaController extends Controller
     }
 
     public function video(){
-        return view('back.pages.media.video');
+        $videos = MediaVideo::orderBy('id', 'desc');
+        $videos = $videos->paginate(10);
+
+        return view('back.pages.media.video', compact('videos'));
     }
 
     public function video_insert(){
         return view('back.pages.media.video_insert');
     }
     public function video_insert_post(MediaVideoPostRequest $request){
-        toastr()->error('posted');
-        return redirect()->back()->withInput();
+        
+        $video = new MediaVideo();
+        $video->iframe = $request->iframe;
+        $video->user_id = Auth::id();
+        $video->title = $request->title;
+
+        return $video->save() ?  
+        redirect()->route("dashboard.media.video")->withSuccess('Başarılı şekilde oluşturuldu')
+        : redirect()->route("dashboard.media.video")->withError('Bir sorun oluştu');
+
+    }
+    public function video_edit(int $id){
+        $video = MediaVideo::find($id) or abort(404, 'Video bulunamadı');
+        return view('back.pages.media.video_edit', compact('video'));
+    }
+    public function video_edit_post(MediaVideoPostRequest $request, int $id){
+        $video = MediaVideo::find($id);
+        if(!$video) return redirect()->route("dashboard.media.video")->withError('Video bulunamadı.');
+
+        $video->iframe = $request->iframe;
+        $video->title = $request->title;
+        return $video->save() ?  
+        redirect()->route("dashboard.media.video", )->withSuccess('Başarılı şekilde oluşturuldu')
+        : redirect()->route("dashboard.media.video.edit", $video->id)->withError('Bir sorun oluştu')->withInput();
+    }
+    public function video_delete(int $id){
+        $video = MediaVideo::find($id);
+        if(!$video) return redirect()->back();
+
+        return $video->delete() ?  
+        redirect()->route("dashboard.media.video", )->withSuccess('Başarılı şekilde kaldırıldı')
+        : redirect()->route("dashboard.media.video")->withError('Bir sorun oluştu');
     }
 }

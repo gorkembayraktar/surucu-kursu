@@ -163,6 +163,11 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
         Route::get('video-galeri/ekle', [AdminMediaController::class, 'video_insert'])->name('dashboard.media.video.insert');
         Route::post('video-galeri/ekle', [AdminMediaController::class, 'video_insert_post'])->name('dashboard.media.video.insert.post');
+
+        Route::post('video-galeri/{id}/sil', [AdminMediaController::class, 'video_delete'])->name('dashboard.media.video.delete.post');
+
+        Route::get('video-galeri/{id}/duzenle', [AdminMediaController::class, 'video_edit'])->name('dashboard.media.video.edit');
+        Route::post('video-galeri/{id}/duzenle', [AdminMediaController::class, 'video_edit_post'])->name('dashboard.media.video.edit.post');
     });
 
     Route::prefix('ayarlar')->group(function () {
