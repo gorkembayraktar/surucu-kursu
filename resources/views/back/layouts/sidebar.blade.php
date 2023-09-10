@@ -3,9 +3,9 @@
   <!-- Main Sidebar Container sidebar-dark-primary  -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
-      <img src="" alt="SMURFWEB Logo" class="brand-image img-circle elevation-3 d-none" style="opacity: .8;background:#fff;">
-      <span class="brand-text font-weight-light">SMURF WEB</span>
+    <a href="" class="brand-link text-center">
+      <img src="{{ asset( $settings->get('favicon') ) }}" alt="SMURFWEB Logo" class="brand-image elevation-3" style="filter: invert(80%)">
+      <span class="brand-text font-weight-light">SMURF THEME</span>
     </a>
 
     <!-- Sidebar -->
@@ -192,7 +192,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard.settings.contact') }}" class="nav-link @if(Request::segment(3) == 'iletisim') active @endif">
+                <a href="{{ route('dashboard.settings.contact') }}" class="nav-link @if(Request::segment(3) == 'iletisim-bilgileri') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>İletişim</p>
                 </a>
