@@ -98,7 +98,7 @@ class SettingsController extends Controller
         return redirect()->route('dashboard.settings.advanced')->withSuccess('Güncellendi.');
     }
     public function email(){
-        $email = Email::where(['type' => \App\Enum\EmailEnum::REPLY_CONTACTS])->first();
+        $email = Email::where(['type' => \App\Enum\EmailEnum::REPLY_CONTACTS])->firstOrCreate();
         return view('back.pages.settings.email', compact('email'));
     }
     public function email_post(SERequest $request){

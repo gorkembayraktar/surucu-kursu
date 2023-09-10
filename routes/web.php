@@ -21,6 +21,8 @@ use App\Http\Controllers\Back\MediaController as AdminMediaController;
 
 use App\Http\Controllers\Back\SettingsController;
 
+use App\Http\Controllers\Back\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -182,6 +184,14 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::post('email', [SettingsController::class, 'email_post'])->name('dashboard.settings.email.post');
         Route::get('bakim-modu', [SettingsController::class, 'maintenance'])->name('dashboard.settings.maintenance');
         Route::post('bakim-modu', [SettingsController::class, 'maintenance_post'])->name('dashboard.settings.maintenance.post');
+    });
+
+    Route::prefix('profil')->group(function(){
+        Route::get('/', [ProfileController::class, 'index'])->name('dashboard.profile.index');
+        Route::post('/', [ProfileController::class, 'post'])->name('dashboard.profile.post');
+
+        Route::get('/sifre', [ProfileController::class, 'password'])->name('dashboard.profile.password');
+        Route::post('/sifre', [ProfileController::class, 'password_post'])->name('dashboard.profile.password.post');
     });
 
 

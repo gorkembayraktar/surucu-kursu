@@ -60,7 +60,7 @@
           @endif
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="" class="dropdown-item">
+          <a href="{{ route( 'dashboard.profile.index') }}" class="dropdown-item">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profil Bilgileri
           </a>
           <div class="dropdown-divider"></div>
