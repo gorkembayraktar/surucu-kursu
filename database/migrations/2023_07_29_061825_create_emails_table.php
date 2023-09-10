@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['REPLY_CONTACTS']);
-            $table->string('host');
-            $table->integer('port');
-            $table->string('email');
-            $table->string('password');
-            $table->string('secure');
-            $table->string('reply_mail');
+            $table->enum('type', \App\Enum\EmailEnum::values())->nullable();
+            $table->string('host')->nullable();
+            $table->integer('port')->nullable();
+            $table->string('email')->nullable();
+            $table->string('password')->nullable();
+            $table->string('secure')->nullable();
+            $table->string('reply_mail')->nullable();
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ use App\Http\Requests\SettingsMaintenancePostRequest as SMRequest;
 use App\Http\Requests\SettingsEmailPostRequest as SERequest;
 
 use App\Models\Settings;
+use App\Models\Email;
 
 class SettingsController extends Controller
 {
@@ -97,17 +98,41 @@ class SettingsController extends Controller
         return redirect()->route('dashboard.settings.advanced')->withSuccess('Güncellendi.');
     }
     public function email(){
-        return view('back.pages.settings.email');
+        $email = Email::where(['type' => \App\Enum\EmailEnum::REPLY_CONTACTS])->first();
+        return view('back.pages.settings.email', compact('email'));
     }
     public function email_post(SERequest $request){
-        toastr()->error('posted');
-        return redirect()->back()->withInput();
+       
+        $email = Email::firstOrCreate(['type' => \App\Enum\EmailEnum::REPLY_CONTACTS]);
+
+        //$email->type = \App\Enum\EmailEnum::REPLY_CONTACTS;
+        $email->host = $request->host;
+        $email->port = $request->port;
+        $email->email = $request->email;
+        $email->password = $request->password;
+        $email->secure = $request->secure;
+        $email->reply_mail = $request->reply;
+
+        return $email->save() ?
+             redirect()->route('dashboard.settings.email')->withSuccess('Güncellendi.')
+            : redirect()->route('dashboard.settings.email')->withError('Bir sorun oluştu.')->withInput();
+        
+       // $email->
+
     }
     public function maintenance(){
         return view('back.pages.settings.maintenance');
     }
     public function maintenance_post(SMRequest $request){
-        toastr()->error('posted');
-        return redirect()->back()->withInput();
+        $data = [
+            "active" => $request->active == 'on',
+            "maintenance_html" => $request->content,
+        ];
+
+        foreach($data as $key => $value):
+            Settings::updateOrCreate(["key" => $key], ["value" => $value]);
+        endforeach;
+
+        return redirect()->route('dashboard.settings.maintenance')->withSuccess('Güncellendi.');
     }
 }

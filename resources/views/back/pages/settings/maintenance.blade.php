@@ -22,13 +22,13 @@
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Site Aktiflik Durumu</label>
                             <div class="col-sm-9 align-self-center">
                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success cursor-pointer">
-                                    <input type="checkbox" class="custom-control-input" id="row-editable-30" name="status">
+                                    <input type="checkbox" class="custom-control-input" id="row-editable-30" name="active" @checked( old( 'active', $settings->get('active')) == "1" )>
                                     <label class="custom-control-label" for="row-editable-30"></label>
                                 </div>
                             </div>
                         </div>
                       
-                        <textarea name="content" class="form-control" id="summernote">{{ old('content') }}</textarea>
+                        <textarea name="content" class="form-control" id="summernote">{{ old('content', $settings->get('maintenance_html')) }}</textarea>
     
                         
                     </div>
