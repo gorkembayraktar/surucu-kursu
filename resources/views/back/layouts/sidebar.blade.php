@@ -3,7 +3,7 @@
   <!-- Main Sidebar Container sidebar-dark-primary  -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link text-center">
+    <a href="{{ route('dashboard.index') }}" class="brand-link text-center">
       @if( $settings->get('favicon') )
       <img src="{{ asset( $settings->get('favicon') ) }}" alt="SMURFWEB Logo" class="brand-image elevation-3" style="filter: invert(80%)">
       @endif
