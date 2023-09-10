@@ -2,39 +2,29 @@
     <x-slot:title>
         Anasayfa
     </x-slot>
-    
+
+@if( $sliders->count() )
 <div class="hero-wrap style2">
     <div class="hero-slider-one owl-carousel">
-                    <div class="hero-slide-item hero-slide-3 bg-f" style="background-image: url({{asset('')}}panel/uploads/slides_v/1920x650/hero-slider-1.jpg)">
+        @foreach($sliders as $slider)
+        <div class="hero-slide-item hero-slide-3 bg-f" style="background-image: url({{asset($slider->image)}}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
                         <div class="hero-content" data-speed="0.10" data-revert="true">
-                            <h1>Uzman Bir Sürücü Olmanıza Yardımcı Oluyoruz</h1>
-                            <p>Lorem ipsum dolor sit amet, consec tetur adipi sicing elit temporibus repel lendus quae quaerat inventore ipsam distinctio officiis unde assumenda minima qui obcaecati iustor praeses antium ametus quaerat lorem dolor.</p>
-
-                                                                <a href="iletisim.html" class="btn style1">İletişime Geç</a>
-                                                            </div>
+                            <h1>{{ $slider->title }}</h1>
+                            <p>{{ $slider->content }}</p>
+                            
+                            <a href="{{ $slider->button_redirect }}" class="btn style1">{{ $slider->button_name}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-                        <div class="hero-slide-item hero-slide-3 bg-f" style="background-image: url({{asset('')}}panel/uploads/slides_v/1920x650/hero-slider-2.jpg)">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <div class="hero-content" data-speed="0.10" data-revert="true">
-                            <h1>Uzman Bir Sürücü Olmanıza Yardımcı Oluyoruz</h1>
-                            <p>Lorem ipsum dolor sit amet, consec tetur adipi sicing elit temporibus repel lendus quae quaerat inventore ipsam distinctio officiis unde assumenda minima qui obcaecati iustor praeses antium ametus quaerat lorem dolor.</p>
-
-                                                                <a href="iletisim.html" class="btn style1">İletişime Geç</a>
-                                                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                    </div>
+        @endforeach
+    </div>
 </div>
+@endif
 
 
 <section class="about-wrap style1 ptb-100">
@@ -59,90 +49,38 @@
 </section>
 
 
+@if($services->count())
 <section class="course-wrap pt-100 pb-75 bg-concrete">
     <div class="container">
         <div class="row">
             <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-                                        <div class="section-title style1 text-center mb-40">
+                <div class="section-title style1 text-center mb-40">
                     <span>Hizmetlerimiz</span>
                     <h2>En İyi Sürüş Kurslarını Sunuyoruz</h2>
                 </div>
-                                    </div>
+            </div>
         </div>
         <div class="course-slider-one owl-carousel">
-                                    <div class="course-card style2">
-                    <a href="hizmet-icerik/otoyol-surusu-20.html">
+            @foreach( $services as $service )
+                <div class="course-card style2">
+                    <a href="{{ route('service-single', $service->slug) }}">
                     <div class="course-img">
-                        <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/services_v/770x435/course-4.jpg" alt="Otoyol Sürüşü">
+                        <img style="width: 100%;height: 280px;object-fit: cover;" src="{{ asset( $service->image ) }}" alt="{{ $service->title }}">
                     </div>
                     </a>
                     <div class="course-info">
-                        <h3><a href="hizmet-icerik/otoyol-surusu-20.html">Otoyol Sürüşü</a></h3>
-                        <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                        <a class="btn style2" href="hizmet-icerik/otoyol-surusu-20.html">
+                        <h3><a href="{{ route('service-single', $service->slug) }}">{{ $service->title }}</a></h3>
+                        <p>{{ substr(strip_tags($service->content), 0,150) }}</p>
+                        <a class="btn style2" href="{{ route('service-single', $service->slug) }}">
                             İncele <i class="flaticon-right-arrow"></i>
                         </a>
                     </div>
                 </div>
-                                    <div class="course-card style2">
-                    <a href="hizmet-icerik/on-lisans-kursu-22.html">
-                    <div class="course-img">
-                        <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/services_v/770x435/course-5.jpg" alt="Ön Lisans Kursu">
-                    </div>
-                    </a>
-                    <div class="course-info">
-                        <h3><a href="hizmet-icerik/on-lisans-kursu-22.html">Ön Lisans Kursu</a></h3>
-                        <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                        <a class="btn style2" href="hizmet-icerik/on-lisans-kursu-22.html">
-                            İncele <i class="flaticon-right-arrow"></i>
-                        </a>
-                    </div>
-                </div>
-                                    <div class="course-card style2">
-                    <a href="hizmet-icerik/genc-surucu-kursu-25.html">
-                    <div class="course-img">
-                        <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/services_v/770x435/course-6.jpg" alt="Genç Sürücü Kursu">
-                    </div>
-                    </a>
-                    <div class="course-info">
-                        <h3><a href="hizmet-icerik/genc-surucu-kursu-25.html">Genç Sürücü Kursu</a></h3>
-                        <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                        <a class="btn style2" href="hizmet-icerik/genc-surucu-kursu-25.html">
-                            İncele <i class="flaticon-right-arrow"></i>
-                        </a>
-                    </div>
-                </div>
-                                    <div class="course-card style2">
-                    <a href="hizmet-icerik/uluslararasi-surus-21.html">
-                    <div class="course-img">
-                        <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/services_v/770x435/course-1.jpg" alt="Uluslararası Sürüş">
-                    </div>
-                    </a>
-                    <div class="course-info">
-                        <h3><a href="hizmet-icerik/uluslararasi-surus-21.html">Uluslararası Sürüş</a></h3>
-                        <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                        <a class="btn style2" href="hizmet-icerik/uluslararasi-surus-21.html">
-                            İncele <i class="flaticon-right-arrow"></i>
-                        </a>
-                    </div>
-                </div>
-                                    <div class="course-card style2">
-                    <a href="hizmet-icerik/trafik-bilimi-24.html">
-                    <div class="course-img">
-                        <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/services_v/770x435/course-2.jpg" alt="Trafik Bilimi">
-                    </div>
-                    </a>
-                    <div class="course-info">
-                        <h3><a href="hizmet-icerik/trafik-bilimi-24.html">Trafik Bilimi</a></h3>
-                        <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                        <a class="btn style2" href="hizmet-icerik/trafik-bilimi-24.html">
-                            İncele <i class="flaticon-right-arrow"></i>
-                        </a>
-                    </div>
-                </div>
-                            </div>
+            @endforeach                  
+        </div>
     </div>
 </section>
+@endif
 
 
 <section class="why-choose-wrap style2 ptb-100">
@@ -206,61 +144,35 @@
     </div>
 </section>
 
-
+@if($blogs->count())
 <section class="vehicle-wrap pt-100 pb-75 bg-concrete">
     <div class="container">
-                                <div class="section-title style1 text-center mb-40">
-                    <span>YAKIN ZAMANDA GÖNDERİLENLER</span>
-                    <h2>En Son Haberlerimizi Okuyun</h2>
-                </div>
-                               
+        <div class="section-title style1 text-center mb-40">
+            <span>YAKIN ZAMANDA GÖNDERİLENLER</span>
+            <h2>En Son Haberlerimizi Okuyun</h2>
+        </div>            
         <div class="vehicle-slider-one owl-carousel">
-                                           <div class="course-card style2">
-                            <a href="bilgi-icerik/konuk-daniel-stern-ile-yolu-aydinlatmak-1.html">
-                                <div class="course-img">
-                                    <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/reference_v/555x343/blog-5.jpg" alt="Konuk Daniel Stern ile Yolu Aydınlatmak">
-                                </div>
-                            </a>
-                            <div class="course-info">
-                                <h3><a href="bilgi-icerik/konuk-daniel-stern-ile-yolu-aydinlatmak-1.html">Konuk Daniel Stern ile Yolu Aydınlatmak</a></h3>
-                                <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                                <a class="btn style2" href="bilgi-icerik/konuk-daniel-stern-ile-yolu-aydinlatmak-1.html">
-                                    İncele <i class="flaticon-right-arrow"></i>
-                                </a>
-                            </div>
-                        </div>
-                                                <div class="course-card style2">
-                            <a href="bilgi-icerik/bu-pandemi-sirasinda-nasil-guvenle-yolculuk-yapilir-2.html">
-                                <div class="course-img">
-                                    <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/reference_v/555x343/blog-4.jpg" alt="Bu Pandemi Sırasında Nasıl Güvenle Yolculuk Yapılır?">
-                                </div>
-                            </a>
-                            <div class="course-info">
-                                <h3><a href="bilgi-icerik/bu-pandemi-sirasinda-nasil-guvenle-yolculuk-yapilir-2.html">Bu Pandemi Sırasında Nasıl Güvenle Yolculuk Yapılır?</a></h3>
-                                <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                                <a class="btn style2" href="bilgi-icerik/bu-pandemi-sirasinda-nasil-guvenle-yolculuk-yapilir-2.html">
-                                    İncele <i class="flaticon-right-arrow"></i>
-                                </a>
-                            </div>
-                        </div>
-                                                <div class="course-card style2">
-                            <a href="bilgi-icerik/otomatik-surus-neden-gecmenize-yardimci-olur-3.html">
-                                <div class="course-img">
-                                    <img style="width: 100%;height: 280px;object-fit: cover;" src="panel/uploads/reference_v/555x343/blog-6.jpg" alt="Otomatik Sürüş Neden Geçmenize Yardımcı Olur?">
-                                </div>
-                            </a>
-                            <div class="course-info">
-                                <h3><a href="bilgi-icerik/otomatik-surus-neden-gecmenize-yardimci-olur-3.html">Otomatik Sürüş Neden Geçmenize Yardımcı Olur?</a></h3>
-                                <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electron...</p>
-                                <a class="btn style2" href="bilgi-icerik/otomatik-surus-neden-gecmenize-yardimci-olur-3.html">
-                                    İncele <i class="flaticon-right-arrow"></i>
-                                </a>
-                            </div>
-                        </div>
-                                </div>
+            @foreach($blogs as $blog)
+            <div class="course-card style2">
+                <a href="{{ route('blog-single', $blog->slug) }}">
+                    <div class="course-img">
+                        <img style="width: 100%;height: 280px;object-fit: cover;" src="{{ asset( $blog->image ) }}" alt="{{ $blog->title }}">
+                    </div>
+                </a>
+                <div class="course-info">
+                    <h3><a href="{{ route('blog-single', $blog->slug) }}">{{ $blog->title }}</a></h3>
+                    <p>{{ substr(strip_tags($blog->content), 0,150) }}</p>
+                    <a class="btn style2" href="{{ route('blog-single', $blog->slug) }}">
+                        İncele <i class="flaticon-right-arrow"></i>
+                    </a>
+                </div>
+            </div>
+            @endforeach
+                                                
+        </div>
     </div>
 </section>
-
+@endif
 
 <div class="cta-wrap style1 bg-downriver ptb-100">
     <div class="container">
@@ -272,13 +184,13 @@
                                        
             </div>
             <div class="col-lg-4 col-md-5 text-end">
-                <a href="iletisim.html" class="btn style1">İletişime Geç</a>
+                <a href="{{ route('channel') }}" class="btn style1">İletişime Geç</a>
             </div>
         </div>
     </div>
 </div>
 
-
+@if($teams->count())
 <section class="team-wrap pt-100 pb-75">
     <div class="container">
         <div class="row">
@@ -287,83 +199,34 @@
                     <span>Ekibimiz</span>
                     <h2>Profesyonel Eğitmenimiz</h2>
                 </div>
-                                    </div>
+            </div>
         </div>
         <div class="team-slider-one owl-carousel">
-            
-                                   <div class="team-card style1">
+            @foreach($teams as $team)
+                <div class="team-card style1">
                     <div class="team-img">
-                        <img style="width: 100%" src="panel/uploads/teams_v/349x388/team-3.jpg" alt="Ahmet Yılmaz">
+                        <img style="width: 100%" src="{{ asset( $team->image )}}" alt="{{ $team->full_name}}">
                         <ul class="social-profile list-style style1">
-                                                                    <li><a href="#" ><i class="fab fa-facebook"></i></a></li>
-                            
-                                                                    <li><a href="#" ><i class="fab fa-instagram"></i></a></li>
-                            
-                            
-                                                                    <li><a href="#" ><i class="fab fa-youtube"></i></a></li>
-                            
-                            
-                                                                    <li><a href="#" ><i class="fab fa-pinterest"></i></a></li>
-                                                            </ul>
+                                <li><a href="{{ $team->socials->get('facebook')}}" ><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="{{ $team->socials->get('instagram')}}" ><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="{{ $team->socials->get('youtube')}}" ><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="{{ $team->socials->get('pinterest')}}" ><i class="fab fa-pinterest"></i></a></li>
+                        </ul>
                     </div>
                     <div class="team-info-wrap">
                         <div class="team-info">
-                            <h3><a>Ahmet Yılmaz</a></h3>
-                            <span>Kıdemli Eğitmen</span>
+                            <h3><a>{{ $team->full_name}}</a></h3>
+                            <span>{{ $team->degree}}</span>
                         </div>
                         <a class="team-link"><i class="flaticon-right-arrow"></i></a>
                     </div>
                 </div>
-                                    <div class="team-card style1">
-                    <div class="team-img">
-                        <img style="width: 100%" src="panel/uploads/teams_v/349x388/team-2.jpg" alt="Tuğçe Doğan">
-                        <ul class="social-profile list-style style1">
-                                                                    <li><a href="#" ><i class="fab fa-facebook"></i></a></li>
-                            
-                            
-                                                                    <li><a href="#" ><i class="fab fa-twitter"></i></a></li>
-                            
-                            
-                                                                    <li><a href="#" ><i class="fab fa-linkedin"></i></a></li>
-                            
-                                                                    <li><a href="#" ><i class="fab fa-pinterest"></i></a></li>
-                                                            </ul>
-                    </div>
-                    <div class="team-info-wrap">
-                        <div class="team-info">
-                            <h3><a>Tuğçe Doğan</a></h3>
-                            <span>Sürüş Eğitmeni</span>
-                        </div>
-                        <a class="team-link"><i class="flaticon-right-arrow"></i></a>
-                    </div>
-                </div>
-                                    <div class="team-card style1">
-                    <div class="team-img">
-                        <img style="width: 100%" src="panel/uploads/teams_v/349x388/team-4.jpg" alt="Ezgi Selçuk">
-                        <ul class="social-profile list-style style1">
-                                                                    <li><a href="#" ><i class="fab fa-facebook"></i></a></li>
-                            
-                            
-                                                                    <li><a href="#" ><i class="fab fa-twitter"></i></a></li>
-                            
-                                                                    <li><a href="#" ><i class="fab fa-youtube"></i></a></li>
-                            
-                            
-                                                                    <li><a href="#" ><i class="fab fa-pinterest"></i></a></li>
-                                                            </ul>
-                    </div>
-                    <div class="team-info-wrap">
-                        <div class="team-info">
-                            <h3><a>Ezgi Selçuk</a></h3>
-                            <span>Savunma Eğitmeni</span>
-                        </div>
-                        <a class="team-link"><i class="flaticon-right-arrow"></i></a>
-                    </div>
-                </div>
-                                
+            @endforeach   
         </div>
     </div>
 </section>
+
+@endif
 
 
 <div class="counter-area">
@@ -431,118 +294,71 @@
     </div>
 </div>
 
-
+@if($comments->count())
 <section class="testimonial-wrap ptb-100">
     <div class="container">
-                                <div class="section-title style1 text-center mb-40">
-                    <span>MÜŞTERİ GERİ BİLDİRİM YAYINLARI</span>
-                    <h2>Müşterimiz Ne Diyor</h2>
-                </div>
-                                <div class="testimonial-slider-two owl-carousel">
-                               <div class="testimonial-card style1">
-                <p class="client-quote">
-                    Eğitmenler çok iyi çok memnun kaldım.                        </p>
-                <div class="client-info-wrap">
-                    <div class="client-img">
-                        <img src="panel/uploads/yorum_v/555x343/ae999d64988786b88d98e0703e0af137.jpg" alt="İclal	Akkoyun">
-                    </div>
-                    <div class="client-info">
-                        <h3>İclal	Akkoyun</h3>
-                        <span>Avukat</span>
-                    </div>
-                    <div class="quote-icon">
-                        <i class="flaticon-quote"></i>
-                    </div>
-                </div>
-            </div>
-                                <div class="testimonial-card style1">
-                <p class="client-quote">
-                    Gelmiş geçmiş en iyi sürücü kurslarından biri herkese tavsiye ederim.                        </p>
-                <div class="client-info-wrap">
-                    <div class="client-img">
-                        <img src="panel/uploads/yorum_v/555x343/team-img3.jpg" alt="Rana Altınoklu">
-                    </div>
-                    <div class="client-info">
-                        <h3>Rana Altınoklu</h3>
-                        <span>Öğrenci</span>
-                    </div>
-                    <div class="quote-icon">
-                        <i class="flaticon-quote"></i>
+        <div class="section-title style1 text-center mb-40">
+            <span>MÜŞTERİ GERİ BİLDİRİM YAYINLARI</span>
+            <h2>Müşterimiz Ne Diyor</h2>
+        </div>
+        <div class="testimonial-slider-two owl-carousel">
+            @foreach($comments as $comment)
+                <div class="testimonial-card style1">
+                    <p class="client-quote">{{ $comment->content }}</p>
+                    <div class="client-info-wrap">
+                        <div class="client-img">
+                            <img src="{{ asset( $comment->image) }}" alt="{{ $comment->name }}">
+                        </div>
+                        <div class="client-info">
+                            <h3>{{ $comment->name }}</h3>
+                            <span>{{ $comment->subname }}</span>
+                        </div>
+                        <div class="quote-icon">
+                            <i class="flaticon-quote"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-                            </div>
+            @endforeach
+        </div>
+
     </div>
 </section>
+@endif
 
 
+@if($blogs->count())
 <section class="blog-wrap pt-100 pb-75 bg-concrete">
     <div class="container">
-                                <div class="section-title style1 text-center mb-40">
-                    <span>Haberlerimiz</span>
-                    <h2>Bizden Haberler</h2>
-                </div>
-                                <div class="row justify-content-center">
-            
-                                    <div class="col-xl-4 col-lg-6 col-md-6">
-                    <div class="blog-card style1">
-                        <a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8.html">
-                        <div class="blog-img">
-                            <img style="width: 100%;height: 250px;object-fit: cover;" src="panel/uploads/news_v/730x411/blog-3.jpg" alt="Bu Frenleme ve Durma Kurallarını Daima Unutmayın">
-                        </div>
+        <div class="section-title style1 text-center mb-40">
+            <span>Haberlerimiz</span>
+            <h2>Bizden Haberler</h2>
+        </div>
+        <div class="row justify-content-center">
+            @foreach($blogs as $blog)
+            <div class="col-xl-4 col-lg-6 col-md-6">
+                <div class="blog-card style1">
+                    <a href="{{ route('blog-single', $blog->slug) }}">
+                    <div class="blog-img">
+                        <img style="width: 100%;height: 250px;object-fit: cover;" src="{{ asset($blog->image) }}" alt="{{ $blog->title }}">
+                    </div>
+                    </a>
+                    <div class="blog-info">
+                        <ul class="blog-metainfo  list-style">
+                            <li><i class="fa fa-calendar"></i> <a href="{{ route('blog-single', $blog->slug) }}">{{ $blog->created_at }}</a></li>
+                        </ul>
+                        <h3><a href="{{ route('blog-single', $blog->slug) }}">{{ $blog->title }}</a></h3>
+                        <p>{{ substr( strip_tags( $blog->content ), 0, 150) }}</p>
+                        <a href="{{ route('blog-single', $blog->slug) }}" class="link style2">Devamını Oku
+                            <i class="flaticon-right-arrow"></i>
                         </a>
-                        <div class="blog-info">
-                            <ul class="blog-metainfo  list-style">
-                                <li><i class="fa fa-calendar"></i> <a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8.html">06.07.2021 18:24</a></li>
-                            </ul>
-                            <h3><a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8.html">Bu Frenleme ve Durma Kurallarını Daima Unutmayın</a></h3>
-                            <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the l...</p>
-                            <a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8.html" class="link style2">Devamını Oku
-                                <i class="flaticon-right-arrow"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
-                                    <div class="col-xl-4 col-lg-6 col-md-6">
-                    <div class="blog-card style1">
-                        <a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7.html">
-                        <div class="blog-img">
-                            <img style="width: 100%;height: 250px;object-fit: cover;" src="panel/uploads/news_v/730x411/blog-1.jpg" alt="En Sık İhlal Edilen Sürüş Yasaları">
-                        </div>
-                        </a>
-                        <div class="blog-info">
-                            <ul class="blog-metainfo  list-style">
-                                <li><i class="fa fa-calendar"></i> <a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7.html">06.07.2021 18:24</a></li>
-                            </ul>
-                            <h3><a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7.html">En Sık İhlal Edilen Sürüş Yasaları</a></h3>
-                            <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the l...</p>
-                            <a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7.html" class="link style2">Devamını Oku
-                                <i class="flaticon-right-arrow"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                                    <div class="col-xl-4 col-lg-6 col-md-6">
-                    <div class="blog-card style1">
-                        <a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6.html">
-                        <div class="blog-img">
-                            <img style="width: 100%;height: 250px;object-fit: cover;" src="panel/uploads/news_v/730x411/blog-2.jpg" alt="Arabanızı Kazadan Nasıl Korursunuz?">
-                        </div>
-                        </a>
-                        <div class="blog-info">
-                            <ul class="blog-metainfo  list-style">
-                                <li><i class="fa fa-calendar"></i> <a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6.html">06.07.2021 18:24</a></li>
-                            </ul>
-                            <h3><a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6.html">Arabanızı Kazadan Nasıl Korursunuz?</a></h3>
-                            <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the l...</p>
-                            <a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6.html" class="link style2">Devamını Oku
-                                <i class="flaticon-right-arrow"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                            </div>
+            </div> 
+            @endforeach             
+        </div>
     </div>
 </section>
+
+@endif
 
 </x-app-layout>

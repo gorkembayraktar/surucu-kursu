@@ -41,7 +41,7 @@
 
         <div class="mb-3">
             <div class="input-group">
-                <input type="email" class="form-control" placeholder="Email" name="email" value="{{ Request::old('email', 'byrktr@gmail.com') }}">
+                <input type="email" class="form-control" placeholder="Email" name="email" value="{{ Request::old('email', 'dev@smurftheme.com') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
@@ -52,7 +52,7 @@
         </div>
         <div class="mb-0"> 
             <div class="input-group">
-                <input type="password" class="form-control" placeholder="Şifre" name="password" value="test123">
+                <input type="password" class="form-control" placeholder="Şifre" name="password" value="dev">
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <span class="fas fa-lock"></span>

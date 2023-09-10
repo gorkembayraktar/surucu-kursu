@@ -9,14 +9,14 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="header-top-left">
                         <ul class="contact-info list-style">
-                            <li><i class="flaticon-call"></i> <a href="tel:0(123) 000 00 10">0(123) 000 00 10</a></li>
+                            <li><i class="flaticon-call"></i> <a href="tel:{{ $settings->get('phone') }}">{{ $settings->get('phone') }}</a></li>
                             <li>
                                 <i class="flaticon-envelope"></i> 
-                                <a href="mailto:surucukursu@smurfweb.net"><span class="__cf_email__" >surucukursu@smurfweb.net</span></a>
+                                <a href="mailto:{{ $settings->get('email') }}"><span class="__cf_email__" >{{ $settings->get('email') }}</span></a>
                             </li>
                             <li>
                                 <i class="flaticon-location-1"></i>
-                                <p>Demirtaş Mah. 16245 Osmangazi/Bursa</p>
+                                <p>{{ $settings->get('adress') }}</p>
                             </li>
                         </ul>
                     </div>
@@ -24,12 +24,19 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="header-top-right">
                         <ul class="social-profile list-style style2">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            <li>                                                                                  
+                            @if( $settings->get('facebook') )
+                            <li><a href="{{ $settings->get('facebook') }}"><i class="fab fa-facebook-f"></i></a></li>
+                            @endif
+                            @if( $settings->get('instagram') )
+                            <li><a href="{{ $settings->get('instagram') }}"><i class="fab fa-instagram""></i></a></li>
+                            @endif
+                            @if( $settings->get('youtube') )
+                            <li><a href="{{ $settings->get('youtube') }}"><i class="fab fa-youtube"></i></a></li>
+                            @endif
+                            @if( $settings->get('twitter') )
+                            <li><a href="{{ $settings->get('twitter') }}"><i class="fab fa-twitter"></i></a></li>
+                            @endif
+                                                                                                            
                         </ul>
                     </div>
                 </div>
@@ -40,7 +47,7 @@
         <div class="header-bottom">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    <img style="height: 85px" src="{{ asset('') }}logo_dark.png" alt="logo">
+                    <img style="height: 85px" src="{{ asset( $settings->get('logo') ) }}" alt="logo">
                 </a>
                 <div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
                     <div class="menu-close xl-none">

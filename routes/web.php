@@ -35,23 +35,27 @@ use App\Http\Controllers\Back\ProfileController;
 |
 */
 
-Route::get('/', [HomeController::class, 'main'])->name('index');
 
-Route::get('hakkimizda', [HomeController::class, 'about_us'])->name('about-us');
-Route::get('ekibimiz', [HomeController::class, 'team'])->name('team');
-Route::get('sikca-sorulanlar', [HomeController::class, 'fqa'])->name('fqa');
+Route::middleware('isMaintenance')->group(function () {
 
-Route::get('hizmetlerimiz',[ServiceController::class, 'services'])->name('services');
-Route::get('hizmet-icerik/{slug}',[ServiceController::class, 'service'])->name('service');
+    Route::get('/', [HomeController::class, 'main'])->name('index');
 
-Route::get('foto-galeri',[MediaController::class, 'gallery_photo'])->name('gallery-photo');
-Route::get('video-galeri',[MediaController::class, 'gallery_media'])->name('gallery-media');
+    Route::get('hakkimizda', [HomeController::class, 'about_us'])->name('about-us');
+    Route::get('ekibimiz', [HomeController::class, 'team'])->name('team');
+    Route::get('sikca-sorulanlar', [HomeController::class, 'fqa'])->name('fqa');
+
+    Route::get('hizmetlerimiz',[ServiceController::class, 'services'])->name('services');
+    Route::get('hizmet/{slug}',[ServiceController::class, 'service_single'])->name('service-single');
+
+    Route::get('foto-galeri',[MediaController::class, 'gallery_photo'])->name('gallery-photo');
+    Route::get('video-galeri',[MediaController::class, 'gallery_media'])->name('gallery-media');
 
 
-Route::get('blog',[BlogController::class, 'list'])->name('blog');
-Route::get('blog/{slug}',[BlogController::class, 'single'])->name('blog-single');
+    Route::get('blog',[BlogController::class, 'list'])->name('blog');
+    Route::get('blog/{slug}',[BlogController::class, 'single'])->name('blog-single');
 
-Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
+    Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
+});
 
 
 // Yönetim paneli

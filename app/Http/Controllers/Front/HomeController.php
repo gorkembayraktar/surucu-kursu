@@ -4,10 +4,24 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Slider;
+use App\Models\Blog;
+use App\Models\Service;
+
+use App\Models\Team;
+
+use App\Models\Comment;
 class HomeController extends Controller
 {
     public function main(){
-        return view('front.homepage');
+
+        $sliders = Slider::orderBy('id', 'desc')->where('active', true)->limit(4)->get();
+        $blogs = Blog::orderBy('id', 'desc')->where('publish', \App\Enum\BlogEnum::PUBLISHED)->limit(5)->get();
+        $services = Service::orderBy('id', 'desc')->where('publish', \App\Enum\ServicesEnum::PUBLISHED)->limit(5)->get();
+        $teams = Team::orderBy('id', 'desc')->limit(5)->get();
+        $comments = Comment::orderBy('id', 'desc')->where('active', true)->limit(4)->get();
+
+        return view('front.homepage', compact('sliders', 'blogs', 'services', 'teams', 'comments'));
     }
 
     public function about_us(){

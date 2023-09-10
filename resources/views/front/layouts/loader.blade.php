@@ -1,4 +1,6 @@
   
+@if( $settings->get('preloader') == '1' )
+
 <div class="loader js-preloader">
     <svg class="car" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(2 1)" stroke="#091851" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
@@ -11,3 +13,5 @@
         </g>
     </svg>
 </div> 
+
+@endif

@@ -8,11 +8,19 @@
                     </a>
                     <p class="comp-desc"><p style="outline: none; padding: 0px; margin-bottom: 20px; line-height: 24px;"><font color="#cec6ce">Türkiye'nin en deneyimli en kaliteli Ehliyet ve Sürücü Kursu SmurfWeb Sürücü Kursu olarak, Ankara'da  ehliyet sahibi olmak isteyen sürücü adaylarını kurumumuza bekliyoruz.. </font><br></p></p>
                     <ul class="social-profile list-style style1">
-                                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                                                            </ul>
+                        @if( $settings->get('facebook') )
+                        <li><a href="{{ $settings->get('facebook') }}"><i class="fab fa-facebook-f"></i></a></li>
+                        @endif
+                        @if( $settings->get('instagram') )
+                        <li><a href="{{ $settings->get('instagram') }}"><i class="fab fa-instagram""></i></a></li>
+                        @endif
+                        @if( $settings->get('youtube') )
+                        <li><a href="{{ $settings->get('youtube') }}"><i class="fab fa-youtube"></i></a></li>
+                        @endif
+                        @if( $settings->get('twitter') )
+                        <li><a href="{{ $settings->get('twitter') }}"><i class="fab fa-twitter"></i></a></li>
+                        @endif
+                    </ul>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6  pe-xl-5">
@@ -52,17 +60,17 @@
                         <li>
                             <span><i class="flaticon-phone-call"></i></span>
                             <h6>Telefon</h6>
-                            <a href="tel:0(123) 000 00 10" target="_blank">0(123) 000 00 10</a>
+                            <a href="tel:{{ $settings->get('phone') }}" target="_blank">{{ $settings->get('phone') }}</a>
                         </li>
                         <li>
                             <span><i class="fab fa-envelope"></i></span>
                             <h6>E-Posta</h6>
-                            <a href="mailto:surucukursu@smurfweb.com" target="_blank">surucukursu@smurfweb.com</a>
+                            <a href="mailto:{{ $settings->get('email') }}" target="_blank">{{ $settings->get('email') }}</a>
                         </li>
                         <li>
                             <span><i class="flaticon-location-1"></i></span>
                             <h6>Adres</h6>
-                            <p>Demirtaş Mah. 16245 Osmangazi/Bursa</p>
+                            <p>{{ $settings->get('adress') }}</p>
                         </li>
                     </ul>
                 </div>
@@ -71,7 +79,7 @@
     </div>
     <div class="copyright-text">
         <div class="container">
-            <p><p>Copyright © 2021 Tüm Hakları Saklıdır. SmurfWeb</p></p>
+            <p>{{ $settings->get('footer') }}</p>
         </div>
     </div>
 </footer>

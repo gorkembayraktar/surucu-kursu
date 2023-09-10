@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         \App\Models\User::insert([
-            'name' => 'Görkem Bayraktar',
-            'email' => 'byrktr@gmail.com',
+            'name' => 'Smurf Theme',
+            'email' => 'dev@smurftheme.com',
             'verified' => true,
             'email_verified_at' => now(),
-            'password' => Hash::make('test123'), 
+            'password' => Hash::make('dev'), 
             'type' => 'admin',
             'remember_token' => Str::random(10),
             'profile_photo_path' => null

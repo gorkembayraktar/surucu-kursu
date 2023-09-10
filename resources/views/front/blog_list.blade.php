@@ -8,68 +8,32 @@
     <div class="blog-details-wrap ptb-100">
         <div class="container">
             <div class="row justify-content-center">
-                                        <div class="col-xl-4 col-lg-6 col-md-6">
+                @foreach($blogs as $blog)
+                    <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="blog-card style1">
-                            <a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8">
+                            <a href="{{ route( "blog-single", $blog->slug ) }}">
                             <div class="blog-img">
-                                <img style="width: 100%;height: 250px;object-fit: cover;" src="https://surucukursu.ayoft.net/panel/uploads/news_v/730x411/blog-3.jpg" alt="Bu Frenleme ve Durma Kurallarını Daima Unutmayın">
+                                <img style="width: 100%;height: 250px;object-fit: cover;" src="{{ asset($blog->image) }}" alt="{{ $blog->title }}">
                             </div>
                             </a>
                             <div class="blog-info">
                                 <ul class="blog-metainfo  list-style">
-                                    <li><i class="fa fa-calendar"></i> <a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8">06.07.2021 18:24</a></li>
+                                    <li><i class="fa fa-calendar"></i> <a href="{{ route('blog-single',$blog->slug) }}">{{ $blog->created_at }}</a></li>
                                 </ul>
-                                <h3><a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8">Bu Frenleme ve Durma Kurallarını Daima Unutmayın</a></h3>
-                                <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the l...</p>
-                                <a href="blog-icerik/bu-frenleme-ve-durma-kurallarini-daima-unutmayin-8" class="link style2">Devamını Oku
+                                <h3><a href="{{ route('blog-single',$blog->slug) }}"> {{$blog->title }}</a></h3>
+                                <p>{{ substr( strip_tags( $blog->content), 0, 150)}}</p>
+                                <a href="{{ route('blog-single',$blog->slug) }}" class="link style2">Devamını Oku
                                     <i class="flaticon-right-arrow"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-6">
-                        <div class="blog-card style1">
-                            <a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7">
-                            <div class="blog-img">
-                                <img style="width: 100%;height: 250px;object-fit: cover;" src="https://surucukursu.ayoft.net/panel/uploads/news_v/730x411/blog-1.jpg" alt="En Sık İhlal Edilen Sürüş Yasaları">
-                            </div>
-                            </a>
-                            <div class="blog-info">
-                                <ul class="blog-metainfo  list-style">
-                                    <li><i class="fa fa-calendar"></i> <a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7">06.07.2021 18:24</a></li>
-                                </ul>
-                                <h3><a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7">En Sık İhlal Edilen Sürüş Yasaları</a></h3>
-                                <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the l...</p>
-                                <a href="blog-icerik/en-sik-ihlal-edilen-surus-yasalari-7" class="link style2">Devamını Oku
-                                    <i class="flaticon-right-arrow"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class="col-xl-4 col-lg-6 col-md-6">
-                        <div class="blog-card style1">
-                            <a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6">
-                            <div class="blog-img">
-                                <img style="width: 100%;height: 250px;object-fit: cover;" src="https://surucukursu.ayoft.net/panel/uploads/news_v/730x411/blog-2.jpg" alt="Arabanızı Kazadan Nasıl Korursunuz?">
-                            </div>
-                            </a>
-                            <div class="blog-info">
-                                <ul class="blog-metainfo  list-style">
-                                    <li><i class="fa fa-calendar"></i> <a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6">06.07.2021 18:24</a></li>
-                                </ul>
-                                <h3><a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6">Arabanızı Kazadan Nasıl Korursunuz?</a></h3>
-                                <p>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the l...</p>
-                                <a href="blog-icerik/arabanizi-kazadan-nasil-korursunuz-6" class="link style2">Devamını Oku
-                                    <i class="flaticon-right-arrow"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                                </div>
+                @endforeach
+                                        
+            </div>
             <div class="page-navigation mt-10">
-                <ul class="page-nav list-style">
-                                                                                <li><a class="active">1</a></li>
-                                            </ul>
+                {{ $blogs->links('vendor.pagination.front') }}
+                
             </div>
         </div>
     </div>

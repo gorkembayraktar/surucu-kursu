@@ -4,15 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>{{ $title ?? config('app.name', 'Sürücü Kursu Scripti') }}</title>
+        <title>{{ $title .' | '. $settings->get('title') }}</title>
 
         <!-- Favicons -->
-        <link rel="icon" type="image/png" href="panel/uploads/settings_v/32x32/favicon.png" sizes="32x32">
-        <link rel="apple-touch-icon" href="panel/uploads/settings_v/32x32/favicon.png">
+       <link rel="icon" type="image/png" href="{{ asset( $settings->get('favicon') ) }}" sizes="32x32">
+       <link rel="apple-touch-icon" href="{{ asset( $settings->get('favicon') ) }}">
 
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name="author" content="SMURFWEB | Sürücü Kursu">
+       <meta name="description" content="{{ ( $settings->get('seo_description') ) }}">
+       <meta name="keywords" content="{{ ( $settings->get('seo_keywords') ) }}">
+       <meta name="author" content="{{ ( $settings->get('seo_author') ) }}">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -42,6 +42,8 @@
             }
 
         </style>
+
+        {{ $style ?? null }}
      
     </head>
     <body>
