@@ -10,16 +10,19 @@
             <div class="row gx-5">
                 <div class="col-lg-6">
                     <div class="about-img-wrap">
-                        <div class="about-bg-1 bg-f" style="background-image: url(panel/uploads/settings_v/748x804/about-img-1.jpg)"></div>
+                        <div class="about-bg-1 bg-f" style="background-image: url({{ asset( $page->image ) }})"></div>
                         <img src="assets/img/about/about-shape-1.png" alt="Image" class="about-shape-one moveHorizontal">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-content">
                         <div class="content-title style1">
-                            <span>Hakkımızda</span>
-                            <h2>Ülkedeki En İyi Sürücü Kursuyuz</h2>
-                            <div>Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled but also the leap into electronic typesetting. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Learn More<br></div>     </div>
+                            <span>{{  $page->sub_title}}</span>
+                            <h2>{{ $page->title }}</h2>
+                            <div>
+                                {!! $page->content !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

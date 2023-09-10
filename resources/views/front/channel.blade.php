@@ -61,8 +61,7 @@
 </span>
                             <div class="contact-info">
                                 <h5>Telefon</h5>
-                                <a href="tel:0(123) 000 00 10">0(123) 000 00 10</a>
-                                <a href="tel:0(123) 000 00 10">0(123) 000 00 10</a>
+                                <a href="tel:{{ $settings->get('phone') }}">{{ $settings->get('phone') }}</a>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -71,7 +70,7 @@
 </span>
                             <div class="contact-info">
                                 <h5>E-Posta</h5>
-                                <a href="mailto:surucukursu@smurfweb.com">surucukursu@smurfweb.com</a>
+                                <a href="mailto:{{ $settings->get('email') }}">{{ $settings->get('email') }}</a>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -80,7 +79,7 @@
                             </span>
                             <div class="contact-info">
                                 <h5>Adres</h5>
-                                <p>Demirtaş Mah. 16245 Osmangazi/Bursa</p>
+                                <p>{{ $settings->get('adress') }}</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -90,11 +89,10 @@
                             <div class="contact-info">
                                 <h5>Sosyal Medya</h5>
                                 <ul class="social-profile list-style style1">
-                                                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                                                                                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                                                                                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                                                                                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                                                                                                                        </ul>
+                                    <li><a href="{{ $settings->get('facebook') }}"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="{{ $settings->get('instagram') }}"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="{{ $settings->get('youtube') }}"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="{{ $settings->get('twitter') }}"><i class="fab fa-twitter"></i></a></li>                                                                                                          </ul>
                             </div>
                         </div>
                     </div>
@@ -103,14 +101,15 @@
         </div>
     </section>
 
+
+    @if( $settings->get('mapiframe') )
     <!-- google-map-section -->
     <section class="google-map-section">
         <div class="map-column">
-            <div class="google-map-area">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40674.95943414137!2d-74.02830237109018!3d40.73596674750672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a197c06b7cb%3A0x40a06c78f79e5de6!2sOzodlik%20minorasi!5e0!3m2!1suz!2sus!4v1594532528185!5m2!1suz!2sus" width="100%" height="390px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
-            tabindex="0"></iframe>                </div>
+            <div class="google-map-area"> {!! $settings->get('mapiframe') !!} </div>
         </div>
     </section>
     <!-- google-map-section end -->
+    @endif
 
 </x-app-layout>

@@ -28,11 +28,11 @@
                     <h3 class="footer-widget-title">Hızlı Menü</h3>
                     <ul class="footer-menu list-style">
                         <li><a href="{{ route('index') }}"><i class="flaticon-right-arrow-1"></i> Anasayfa</a></li>
-                        <li><a href="{{ route('about-us') }}"><i class="flaticon-right-arrow-1"></i> Hakkımızda</a></li>
+                        <li><a href="{{ route('page-single', 'hakkimizda') }}"><i class="flaticon-right-arrow-1"></i> Hakkımızda</a></li>
                         <li><a href="{{ route('team') }}"><i class="flaticon-right-arrow-1"></i> Ekibimiz</a></li>
                         <li><a href="{{ route('fqa') }}"><i class="flaticon-right-arrow-1"></i> Sıkça Sorulanlar</a></li>
                         <li><a href="{{ route('services') }}"><i class="flaticon-right-arrow-1"></i> Hizmetlerimiz</a></li>
-                        <li><a href="bilgiler.html"><i class="flaticon-right-arrow-1"></i> Gerekli Bilgiler</a></li>
+                        <li><a href="{{ route('blog') }}"><i class="flaticon-right-arrow-1"></i> Gerekli Bilgiler</a></li>
                         <li><a href="{{ route('gallery-photo') }}"><i class="flaticon-right-arrow-1"></i> Foto Galeri</a></li>
                         <li><a href="{{ route('gallery-media') }}"><i class="flaticon-right-arrow-1"></i> Video Galeri</a></li>
                         <li><a href="{{ route('blog') }}"><i class="flaticon-right-arrow-1"></i> Bizden Haberler</a></li>
@@ -44,11 +44,9 @@
                 <div class="footer-widget">
                     <h3 class="footer-widget-title">Hizmetlerimiz</h3>
                     <ul class="footer-menu list-style">
-                                                        <li><a href="hizmet-icerik/otoyol-surusu-20.html"><i class="flaticon-right-arrow-1"></i> Otoyol Sürüşü</a></li>
-                                                            <li><a href="hizmet-icerik/on-lisans-kursu-22.html"><i class="flaticon-right-arrow-1"></i> Ön Lisans Kursu</a></li>
-                                                            <li><a href="hizmet-icerik/genc-surucu-kursu-25.html"><i class="flaticon-right-arrow-1"></i> Genç Sürücü Kursu</a></li>
-                                                            <li><a href="hizmet-icerik/uluslararasi-surus-21.html"><i class="flaticon-right-arrow-1"></i> Uluslararası Sürüş</a></li>
-                                                            <li><a href="hizmet-icerik/trafik-bilimi-24.html"><i class="flaticon-right-arrow-1"></i> Trafik Bilimi</a></li>
+                        @foreach($menu->services as $s)
+                        <li><a href="{{ route("service-single", $s->slug) }}"><i class="flaticon-right-arrow-1"></i> {{ $s->title }}</a></li>
+                        @endforeach
                             
                     </ul>
                 </div>

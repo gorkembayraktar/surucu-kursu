@@ -17,6 +17,9 @@
                     </form>
                 </div>
                 <div class="card-body">
+                    <div class="d-flex flex-wrap">
+
+                   
                     @foreach ($photos as $photo)
                         <div class="col-6 col-md-3 mb-3 image-container">
                             <img width="100%" height="200" class="rounded" src="{{ asset( $photo->image ) }}" />
@@ -30,6 +33,7 @@
                             </div>
                         </div>
                     @endforeach
+                    </div>
                 </div>
                 <div class="card-footer clearfix">
                     {{ $photos->links('vendor.pagination.default') }}

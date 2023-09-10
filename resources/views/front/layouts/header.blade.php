@@ -58,27 +58,26 @@
                         <li class="nav-item  has-dropdown"><a class="nav-link " href="#">Kurumsal 
                             <i class="ri-arrow-down-s-fill"></i></a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">Hakkımızda</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('page-single', 'hakkimizda') }}">Hakkımızda</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('team') }}">Ekibimiz</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('fqa') }}">Sıkça Sorulanlar</a></li>
                             </ul>
                         </li>
                         <li class="nav-item  has-dropdown"><a class="nav-link " href="{{ route('services') }}">Hizmetler     <i class="ri-arrow-down-s-fill"></i></a>
                             <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="hizmet-icerik/otoyol-surusu-20.html">Otoyol Sürüşü</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="hizmet-icerik/on-lisans-kursu-22.html">Ön Lisans Kursu</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="hizmet-icerik/genc-surucu-kursu-25.html">Genç Sürücü Kursu</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="hizmet-icerik/uluslararasi-surus-21.html">Uluslararası Sürüş</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="hizmet-icerik/trafik-bilimi-24.html">Trafik Bilimi</a></li>
-                                        <li><a href="{{ route('services') }}">TÜMÜNÜ GÖRÜNTÜLE</a></li>
+                                @foreach($menu->services as $s)
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('service-single', $s->slug) }}">{{ $s->title }}</a></li>
+                                @endforeach   
+                                        
+                                <li><a href="{{ route('services') }}">TÜMÜNÜ GÖRÜNTÜLE</a></li>
                             </ul>
                         </li>
                         <li class="nav-item  has-dropdown"><a class="nav-link " href="bilgiler">Gerekli Bilgiler   <i class="ri-arrow-down-s-fill"></i></a>
                             <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="bilgi-icerik/konuk-daniel-stern-ile-yolu-aydinlatmak-1.html">Konuk Daniel Stern ile Yolu Aydınlatmak</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="bilgi-icerik/bu-pandemi-sirasinda-nasil-guvenle-yolculuk-yapilir-2.html">Bu Pandemi Sırasında Nasıl Güvenle Yolculuk Yapılır?</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="bilgi-icerik/otomatik-surus-neden-gecmenize-yardimci-olur-3.html">Otomatik Sürüş Neden Geçmenize Yardımcı Olur?</a></li>
-                                    <li><a href="bilgiler.html">TÜMÜNÜ GÖRÜNTÜLE</a></li>
+                                @foreach($menu->blogs as $b)
+                                <li class="nav-item"><a class="nav-link" href="{{ route('blog-single', $b->slug) }}">{{ $b->title }}</a></li>
+                                @endforeach   
+                                <li><a href="{{ route('blog') }}">TÜMÜNÜ GÖRÜNTÜLE</a></li>
                             </ul>
                         </li>
                         <li class="nav-item  has-dropdown"><a class="nav-link " href="#">Multimedya <i class="ri-arrow-down-s-fill"></i></a>

@@ -10,7 +10,11 @@ class ServiceController extends Controller
 {
     
     public function services(){
-        return view('front.services');
+        $services = Service::orderBy('id', 'desc')->where('publish', \App\Enum\ServicesEnum::PUBLISHED);
+
+        $services = $services->paginate(3);
+
+        return view('front.services', compact('services'));
     }
     
     public function service_single(string $slug){

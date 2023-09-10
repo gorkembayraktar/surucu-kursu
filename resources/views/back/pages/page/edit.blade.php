@@ -25,6 +25,19 @@
                             <input type="text" name="title" class="form-control" value="{{ old('title', $page->title) }}" autocomplete="off">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Slug</label>
+                            <div class="col-sm-9">
+                            <input type="text" name="slug" class="form-control" value="{{ old('slug', $page->slug) }}" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Alt Başlık</label>
+                            <div class="col-sm-9">
+                            <input type="text" name="sub_title" class="form-control" value="{{ old('sub_title', $page->sub_title) }}" autocomplete="off">
+                            </div>
+                        </div>
                         
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">İçerik</label>

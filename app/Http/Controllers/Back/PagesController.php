@@ -44,7 +44,8 @@ class PagesController extends Controller
             "user_id" => Auth::id(),
             "title" => $request->title,
             "slug" => Str::slug($request->title),
-            "content" => $request->content
+            "content" => $request->content,
+            "sub_title" => $request->sub_title
         ];
 
         if($request->image_path){
@@ -90,8 +91,9 @@ class PagesController extends Controller
         $data = [
             "user_id" => Auth::id(),
             "title" => $request->title,
-            "slug" => Str::slug($request->title),
-            "content" => $request->content
+            "slug" => Str::slug($request->slug ? $request->slug : $request->title),
+            "content" => $request->content,
+            "sub_title" => $request->sub_title
         ];
 
         if($request->image_path){

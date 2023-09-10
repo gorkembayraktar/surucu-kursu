@@ -4,6 +4,8 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ServiceController;
 use App\Http\Controllers\Front\MediaController;
 use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\PageController;
+
 
 use App\Http\Controllers\Back\DashController;
 
@@ -36,11 +38,10 @@ use App\Http\Controllers\Back\ProfileController;
 */
 
 
-Route::middleware('isMaintenance')->group(function () {
+Route::middleware(['isMaintenance', 'menu'])->group(function () {
 
     Route::get('/', [HomeController::class, 'main'])->name('index');
 
-    Route::get('hakkimizda', [HomeController::class, 'about_us'])->name('about-us');
     Route::get('ekibimiz', [HomeController::class, 'team'])->name('team');
     Route::get('sikca-sorulanlar', [HomeController::class, 'fqa'])->name('fqa');
 
@@ -55,6 +56,8 @@ Route::middleware('isMaintenance')->group(function () {
     Route::get('blog/{slug}',[BlogController::class, 'single'])->name('blog-single');
 
     Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
+
+    Route::get('{slug}', [PageController::class, 'page'])->name('page-single');
 });
 
 

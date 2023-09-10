@@ -47,9 +47,9 @@
      
     </head>
     <body>
-        <!--
+    
         @include('front.layouts.loader')   
-        -->
+     
         <div class="{{ request()->is('/') ? 'page' : "content"  }}-wrapper">
             @include('front.layouts.header')
             {{ $slot }}
