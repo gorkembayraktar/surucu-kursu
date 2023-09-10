@@ -28,7 +28,9 @@
                 <a href="{{ route('dashboard.settings.maintenance') }}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm @if (Request::segment(3) == 'bakim-modu') btn-info  @else btn-outline-info @endif">
                  <i class="fas fa-fw fa-cog fa-sm text-primary-50"></i> Bakım Modu
             </a>
-            <a href="{{ route('index') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm"><i class="fas fa-download fa-sm text-primary-50"></i> Web siteyi Görüntüle</a>
+            <a href="{{ route('index') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm">
+              <i class="fas fa-download fa-sm text-primary-50"></i> Web siteyi Görüntüle <span class="@if(true) site-yayinda @else site-kapali  @endif"></span>
+            </a>
           </div>
           <!-- /.col -->
         </div><!-- /.row -->

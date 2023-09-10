@@ -25,6 +25,21 @@
   <link rel="icon" type="image/png" href="{{ asset( $settings->get('favicon') ) }}" sizes="32x32">
   <link rel="apple-touch-icon" href="{{ asset( $settings->get('favicon') ) }}">
 
+  <style>
+    .site-yayinda{
+      background: green;
+      border-radius: 50%;
+      padding: 8px;
+      display: inline-block;
+    }
+    .site-kapali{
+      background: red;
+      border-radius: 50%;
+      padding: 8px;
+      display: inline-block;
+    }
+  </style>
+
   {{ $style ?? null }}
 
   <script>
