@@ -204,6 +204,7 @@ Route::middleware(['isMaintenance', 'menu'])->group(function () {
     Route::get('blog/{slug}',[BlogController::class, 'single'])->name('blog-single');
 
     Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
+    Route::post('iletisim',[HomeController::class, 'channel_post'])->name('channel.post');
 
     Route::get('{slug}', [PageController::class, 'page'])->name('page-single');
 });

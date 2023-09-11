@@ -13,37 +13,46 @@
                         <div class="content-title style1 mb-20">
                             <h2>Bize Mesaj Gönder</h2>
                         </div>
-                        <form class="form-wrap" id="contactForm" action="" method="post" role="form">
-                            <input name="ip" type="hidden" class="form-control" value="88.234.84.95">
-                            <input name="durum" type="hidden" class="form-control" value="1">
-                            <input type="hidden" name="tarih" value="14.06.2023 09:54:57">
+
+                        <div class="flash-message">
+                            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                              @if(Session::has('alert-' . $msg))
+                              <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+                              @endif
+                            @endforeach
+                        </div>
+
+                        <form class="form-wrap" id="contactForm" action="{{ route('channel.post')  }}" method="post" role="form">
+                            @csrf
+                            <input name="ip" type="hidden" class="form-control" value="{{ Request::ip() }}">
+                            <input type="hidden" name="tarih" value="{{ now() }}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="isim" id="name" required placeholder="İsminiz Soyisminiz">
+                                        <input type="text" name="isim" id="name" value="{{ old('isim') }}" required placeholder="İsminiz Soyisminiz">
 
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" name="mail" id="email"  required placeholder="Elektronik Posta Adresiniz">
+                                        <input type="email" name="mail" id="email" value="{{ old('mail') }}" required placeholder="Elektronik Posta Adresiniz">
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" name="konu" id="phone_number" required  placeholder="İletmek İstediğiniz Mesajın Konusu">
+                                        <input type="text" name="konu" id="phone_number" value="{{ old('konu') }}" required  placeholder="İletmek İstediğiniz Mesajın Konusu">
 
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group v1">
-                                        <textarea name="mesaj" id="message" placeholder="İletmek İstediğiniz Mesajınız" cols="30" rows="10" required></textarea>
+                                        <textarea name="mesaj" id="message" placeholder="İletmek İstediğiniz Mesajınız" cols="30" rows="10" required>{{ old('mesaj') }}</textarea>
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button name="iletisim" class="btn style1 w-100 d-block">Mesaj Gönder</button>
+                                    <button type="submit" class="btn style1 w-100 d-block">Mesaj Gönder</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
