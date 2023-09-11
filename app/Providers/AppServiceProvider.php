@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Models\Settings;
+use App\Helpers\SettingsHelper;
 
 use Illuminate\Support\Facades\View;
 
@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $settings = new Settings;
+        $settings = new SettingsHelper;
         View::share('settings',  $settings );
     }
 }
