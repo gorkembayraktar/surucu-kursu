@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\ServicesPostRequest;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Service;
 
-class ServicesController extends Controller
+class ServicesController extends DashboardController
 {
     public function index(Request $request){
 

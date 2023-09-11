@@ -20,6 +20,8 @@ use App\Http\Controllers\Back\BlogController as AdminBlogController;
 
 use App\Http\Controllers\Back\MediaController as AdminMediaController;
 
+use App\Http\Controllers\Back\EmailController as AdminEmailController;
+
 
 use App\Http\Controllers\Back\SettingsController;
 
@@ -154,6 +156,11 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
 
         Route::get('video-galeri/{id}/duzenle', [AdminMediaController::class, 'video_edit'])->name('dashboard.media.video.edit');
         Route::post('video-galeri/{id}/duzenle', [AdminMediaController::class, 'video_edit_post'])->name('dashboard.media.video.edit.post');
+    });
+    Route::prefix('email')->group(function () {
+        Route::get('/', [AdminEmailController::class, 'index'])->name('dashboard.email.index');
+        Route::get('/{id}', [AdminEmailController::class, 'show'])->name('dashboard.email.show');
+        Route::post('/{id}/sil', [AdminEmailController::class, 'delete'])->name('dashboard.email.delete');
     });
 
     Route::prefix('ayarlar')->group(function () {

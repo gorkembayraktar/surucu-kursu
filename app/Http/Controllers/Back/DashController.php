@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 
 use App\Models\Blog;
@@ -10,7 +10,7 @@ use App\Models\Team;
 use App\Models\BlogCategory;
 use App\Models\Service;
 
-class DashController extends Controller
+class DashController extends DashboardController
 {
     public function index(){
 

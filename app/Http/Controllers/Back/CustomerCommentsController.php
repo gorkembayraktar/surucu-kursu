@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Requests\CustomerCommentsPostRequest;
 
 use App\Models\Comment;
 
-class CustomerCommentsController extends Controller
+class CustomerCommentsController extends DashboardController
 {
     public function index(){
         $comments = Comment::orderBy('que', 'asc')->orderBy('id', 'asc');

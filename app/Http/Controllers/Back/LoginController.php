@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginPostRequest;
 
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class LoginController extends DashboardController
 {
     public function index(){
         return view('back.login');

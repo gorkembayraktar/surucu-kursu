@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\SettingsGeneralPostRequest as SGRequest;
@@ -16,7 +16,7 @@ use App\Http\Requests\SettingsEmailPostRequest as SERequest;
 use App\Models\Settings;
 use App\Models\Email;
 
-class SettingsController extends Controller
+class SettingsController extends DashboardController
 {
     public function general(){
         return view('back.pages.settings.general');

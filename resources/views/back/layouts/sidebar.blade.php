@@ -179,6 +179,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="{{ route( 'dashboard.email.index' ) }}" class="nav-link">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Email
+                @if($email_count >0)
+                <span class="badge badge-success right">{{ $email_count }}</span>
+                @endif
+              </p>
+            </a>
+          </li>
           <li class="nav-header">Site</li>
           <li class="nav-item @if( Request::segment(2) == 'ayarlar' ) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link">

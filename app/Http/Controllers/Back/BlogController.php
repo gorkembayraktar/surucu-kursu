@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Requests\BlogPostRequest;
@@ -18,7 +18,7 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
 
-class BlogController extends Controller
+class BlogController extends DashboardController
 {
     public function index(Request $request){
 

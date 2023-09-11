@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +11,7 @@ use App\Http\Requests\SliderPostRequest;
 
 use App\Models\Slider;
 
-class SliderController extends Controller
+class SliderController extends DashboardController
 {
     public function index(){
         $sliders = Slider::orderBy('que', 'asc')->orderBy('id', 'asc');

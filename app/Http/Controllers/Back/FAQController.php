@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\FAQPostRequest;
 
 use App\Models\FAQ;
 
-class FAQController extends Controller
+class FAQController extends DashboardController
 {
     public function index(){
         $faq = FAQ::orderBy('id', 'desc')->get();

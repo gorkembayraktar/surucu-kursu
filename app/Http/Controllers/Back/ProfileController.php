@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\ProfilePostRequest;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Validator;
 
-class ProfileController extends Controller
+class ProfileController extends DashboardController
 {
     public function index(){
         $user = Auth::user();

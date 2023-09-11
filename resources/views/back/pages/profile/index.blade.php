@@ -37,7 +37,7 @@
                                 </div>
                             </div>
     
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Şifreniz </label>
                                     <input disabled class="form-control" value="*************">
@@ -45,14 +45,17 @@
                                 </div>
                             </div>
     
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Profil Fotoğrafı Seç</label>
                                     <input type="file" name="profil" class="form-control">
-                                    @if( $user->profile_photo_path )
-                                        <img src="{{ asset( $user->profile_photo_path ) }}" />
-                                    @endif
+                                  
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                @if( $user->profile_photo_path )
+                                    <img src="{{ asset( $user->profile_photo_path ) }}" width="50" />
+                                @endif
                             </div>
                         </div>
                     </div>

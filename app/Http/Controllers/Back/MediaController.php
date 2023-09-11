@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\MediaPhotoPostRequest;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\MediaPhoto;
 use App\Models\MediaVideo;
 
-class MediaController extends Controller
+class MediaController extends DashboardController
 {
     public function photo(){
 

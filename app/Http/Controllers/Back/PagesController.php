@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\PagesPostRequest;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Page;
 
-class PagesController extends Controller
+class PagesController extends DashboardController
 {
     public function index(){
         $pages = Page::orderBy('id', 'desc');

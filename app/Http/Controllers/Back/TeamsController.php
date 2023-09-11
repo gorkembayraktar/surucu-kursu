@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,7 +11,7 @@ use App\Http\Requests\TeamsPostRequest;
 
 use App\Models\Team;
 
-class TeamsController extends Controller
+class TeamsController extends DashboardController
 {
     public function index(){
         $teams = Team::orderBy('id', 'desc');

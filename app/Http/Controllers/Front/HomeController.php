@@ -84,7 +84,7 @@ class HomeController extends Controller
             "type" => \App\Enum\EmailContactEnum::CONTACT,
             "name" => $request->isim,
             "mail" => $request->mail,
-            "subject" => $request->title,
+            "subject" => $request->konu,
             "message" => $request->mesaj,
             "ip_adress" => $request->ip,
             "ip_info_json" => file_get_contents("http://ipinfo.io/{$client_ip}/json"),
