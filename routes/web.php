@@ -52,7 +52,7 @@ Route::get('{login}', function(){
 })
 ->where('login', '(giriş|giris|admin)');
 
-Route::middleware('auth')->prefix('dashboard')->group(function () {
+Route::middleware(['auth', 'isDemo'])->prefix('dashboard')->group(function () {
     Route::get('/', [DashController::class, 'index'])->name('dashboard.index');
     Route::post('logout', [LoginController::class, 'logout'])->name('dashboard.logout');
 
