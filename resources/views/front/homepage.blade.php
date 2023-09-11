@@ -124,16 +124,19 @@
                     <div class="quote-title">
                         <h2>Bize Mesaj Gönder</h2>
                     </div>
-                    <form action="#" method="post" role="form">
+                    <form id="iletisim-fomu" action="{{ route('channel.post.json') }}" method="post" onsubmit="return false;">
+
+                        <input name="ip" type="hidden" class="form-control" value="{{ Request::ip() }}">
+                        <input type="hidden" name="tarih" value="{{ now() }}">
                         
                         <div class="form-group">
-                            <input type="text" name="isim" id="name" required placeholder="İsminiz Soyisminiz">
+                            <input type="text" name="isim" required placeholder="İsminiz Soyisminiz">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="mail" id="email"  required placeholder="Elektronik Posta Adresiniz">
+                            <input type="email" name="mail" required placeholder="Elektronik Posta Adresiniz">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="konu" id="phone_number" required  placeholder="İletmek İstediğiniz Mesajın Konusu">
+                            <input type="text" name="konu" required  placeholder="İletmek İstediğiniz Mesajın Konusu">
                         </div>
                         <div class="form-group">
                             <textarea name="mesaj" id="msg" cols="30" rows="10" placeholder="İletmek İstediğiniz Mesajınız"></textarea>
@@ -147,6 +150,70 @@
         </div>
     </div>
 </section>
+
+<script>
+   document.addEventListener("DOMContentLoaded", (event) => {
+
+      
+    $("#iletisim-fomu").submit(function(e){
+        e.preventDefault();
+
+        $("button[name=iletisim]").prop('disabled', true);
+        
+        const data = {
+            tarih: input_val( 'tarih' ),
+            ip: input_val( 'ip' ),
+            isim: input_val( 'isim' ),
+            mail: input_val( 'mail' ),
+            konu: input_val( 'konu' ),
+            mesaj: $("textarea[name=mesaj]").val()
+        };
+        
+        $.ajax({
+            url: e.target.action,
+            method: 'post',
+            data: data,
+            dataType: 'json',
+            success: function(result){
+                if(result.success){
+                    Swal.fire(
+                        'Başarılı',
+                        result.message,
+                        'success'
+                    );
+                    ['isim', 'mail', 'konu'].forEach(function(type){
+                        input_val(type, '');
+                    });
+                    $("textarea[name=mesaj]").val('');
+                }else{
+                    Swal.fire(
+                        'Başarısız',
+                        result.message,
+                        'error'
+                    );
+                }
+            },
+            
+            error: function(er){
+                Swal.fire(
+                        'Başarısız',
+                        'Bir sorun oluştu!',
+                        'error'
+                );
+            },
+            complete: function(){
+                $("button[name=iletisim]").prop('disabled', false);
+            }
+        })
+        
+      });
+      function input_val(name, set = null){
+        if(set != null) $(`input[name=${name}]`).val(set);
+        return $(`input[name=${name}]`).val();
+      }
+     
+  });
+</script>
 
 @if($blogs->count())
 <section class="vehicle-wrap pt-100 pb-75 bg-concrete">

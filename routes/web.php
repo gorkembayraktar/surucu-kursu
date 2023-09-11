@@ -205,6 +205,9 @@ Route::middleware(['isMaintenance', 'menu'])->group(function () {
 
     Route::get('iletisim',[HomeController::class, 'channel'])->name('channel');
     Route::post('iletisim',[HomeController::class, 'channel_post'])->name('channel.post');
+    Route::post('iletisim.json',[HomeController::class, 'channel_post_json'])->name('channel.post.json')
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
-    Route::get('{slug}', [PageController::class, 'page'])->name('page-single');
+    Route::get('{slug}', [PageController::class, 'page'])
+    ->name('page-single');
 });

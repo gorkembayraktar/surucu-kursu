@@ -51,10 +51,8 @@ class HomeController extends Controller
     public function channel(){
         return view('front.channel');
     }
-    public function channel_post( Request $request ){
-        
-      
 
+    private function _channel_post(Request $request){
         $push = true;
         $reply = Email::where('type', \App\Enum\EmailEnum::REPLY_CONTACTS)->first()->reply_mail;
         try
@@ -96,8 +94,12 @@ class HomeController extends Controller
             "page_created_at" => $request->tarih
         ];
 
-        $status = ContactMail::create($data);
+        return ContactMail::create($data);
 
+    }
+    public function channel_post( Request $request ){
+        $status = $this->_channel_post( $request );
+       
         if($status){
             $request->session()->flash('alert-info', 'Mesajınız iletildi.');
         }else{
@@ -106,7 +108,16 @@ class HomeController extends Controller
         
         return $status ? redirect()->route('channel')->withSuccess('Başarılı şekilde gönderildi')  : 
         redirect()->route('channel')->withError('Bir sorun oluştu')->withInput();
+    }
 
+    public function channel_post_json( Request $request ){
 
+        $status = $this->_channel_post( $request );
+
+        $messages = [
+            "success" => $status ? true : false,
+            "message" => $status ? 'Mesajınız iletildi' : 'Bir sorun oluştu' 
+        ];
+        return \Response::json($messages, $status ? 200 : 500);
     }
 }
