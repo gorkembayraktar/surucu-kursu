@@ -16,6 +16,11 @@
 ## Kurumsal Sürücü Kursu Web Sitesi
 Bu proje Laravel 10. sürüm ile hazırlanmıştır. Kurumsal işletme "sürücü kursu" tanıtımını gelişmiş yönetim paneli yapabilirsiniz.
 
+## Canlı
+https://drivingschool.smurftheme.net/
+## Panel
+https://drivingschool.smurftheme.net/dashboard/
+
 ### Yönetim Paneli
     - Günlük, haftalık, aylık ve yıllık görüntülenmesini grafik ile görüntüleyebilir
     - Blog yazılarını paylaşabilir,
