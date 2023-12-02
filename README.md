@@ -21,6 +21,59 @@ https://drivingschool.smurftheme.net/
 ## Panel
 https://drivingschool.smurftheme.net/dashboard/
 
+<hr>
+
+## Kurulum
+Projeyi locale aldıktan sonra aşağıda yer alan adımları uygulayınız.
+#### 1) .env.example dosyasını düzenleyin
+    - .env.example isimli dosyayı .env olarak yeniden adlandırın.
+    -  Mysql'de veritabanı oluşturunuz. Oluşturduğunuz dbname .env dosyasında tanımlanmalıdır.
+    - .env dosyasında konfigürasyon değerlerini localinizdeki bilgiler ile değiştiriniz.
+```
+    # APP_URL değerini çalışma dizininiz olarak tanımlayınız.
+    APP_URL=http://localhost
+
+    # Database Bilgileriniz
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=root
+    DB_PASSWORD=
+```
+#### 2) Gereklik bağımlılıkların yüklenmesi
+Paketlerin yüklenmesi için php paket yöneticisi composer kurulu olan bir ortamda aşadağıdaki komutu çalıştırınız.
+```
+composer install
+```
+Tabloların ve örnek datanın initialize işlemi
+Uyarı: Tablolar mevcut ve data girdisi var ise tüm veriler silinecek ve tablolar varsayılan ayarlarda seed edilecektir.
+```
+php artisan migrate:refresh --seed
+```
+Proje için özel anahtar oluşturulması
+```
+php artisan key:generate
+```
+#### 3) Projeyi dev olarak çalıştır
+Eğer projeyi dev olarak başlatırsanız, .env dosyasında APP_URL=http://localhost:<AÇILAN PORT> olarak tanımlama yapınız.
+```
+php artisan serve
+```
+
+#### 4) Projeyi Sunucuda Serve etmek
+Production ortamında paket boyutunu küçültmek için yalnızca gerekli olan bağımlılıklar kullanılamalıdır. Dev dependencies paketlerinin kaldırılması ve optimizasyon işlemi için aşağıda yer alan komutu dizininizde çalıştırınız:
+```
+composer install --no-dev --optimize-autoloader
+```
+Projenizi uzak sunucuda çalıştırmak için: 
+
+   - dizinde bulunan .htaccess.server dosya adını .htaccess olarak yeniden adlandırın.
+
+
+Kurulum adımları işte bu kadar!
+<hr>
+
 ### Yönetim Paneli
     - Günlük, haftalık, aylık ve yıllık görüntülenmesini grafik ile görüntüleyebilir
     - Blog yazılarını paylaşabilir,
@@ -33,7 +86,5 @@ https://drivingschool.smurftheme.net/dashboard/
     - Bakım modu sayesinde panelde değişiklikler yapabilir websitenizi yayına alabilirsiniz.
 
 
-#### Database kurulumu
-composer bulunan bir ortamda bu komutu çalıştırınız.
-php artisan migrate:refresh --seed
+
 

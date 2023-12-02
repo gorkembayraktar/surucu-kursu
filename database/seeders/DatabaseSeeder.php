@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
 
         $settings = [
-            "title" => ["" , 1],
+            "title" => [config('app.name') , 1],
             "logo" => ["", 1],
             "logo_dark" => ["", 1],
             "favicon" => ["", 1],
