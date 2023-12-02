@@ -23,7 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $settings = new SettingsHelper;
-        View::share('settings',  $settings );
+       // paket kurulumunda settings table olmayacağında eğer console çalışmıyorsa bu işlemi dağıt
+       if (!$this->app->runningInConsole()) {
+            $settings = new SettingsHelper;
+            View::share('settings',  $settings );
+        }
     }
 }
