@@ -17,10 +17,6 @@ class BlogController extends Controller
 
         $blogs = $blogs->paginate(4);
 
-        if($blogs->count() == 0 )
-            return redirect()->route('blog');
-
-
         return view('front.blog_list', compact('blogs'));
     }
 
