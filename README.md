@@ -62,7 +62,7 @@ php artisan serve
 ```
 
 #### 4) Projeyi Sunucuda Serve etmek
-Production ortamında paket boyutunu küçültmek için yalnızca gerekli olan bağımlılıklar kullanılamalıdır. Dev dependencies paketlerinin kaldırılması ve optimizasyon işlemi için aşağıda yer alan komutu dizininizde çalıştırınız:
+Production ortamında paket boyutunu küçültmek için yalnızca gerekli olan bağımlılıklar kullanılmalıdır. Dev dependencies paketlerinin kaldırılması ve optimizasyon işlemi için aşağıda yer alan komutu dizininizde çalıştırınız:
 ```
 composer install --no-dev --optimize-autoloader
 ```
