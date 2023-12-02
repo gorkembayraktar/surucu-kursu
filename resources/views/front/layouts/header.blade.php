@@ -47,7 +47,11 @@
         <div class="header-bottom">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    <img style="height: 85px" src="{{ asset( $settings->get('logo') ) }}" alt="logo">
+                    @if($settings->get('logo'))
+                    <img style="height: 85px" src="{{ asset( $settings->get('logo') ) }}" alt="{{ empty($settings->get('title')) ? config('app.name') :  $settings->get('title')  }}">
+                    @else
+                        <span class="text-light">{{ empty($settings->get('title')) ? config('app.name') :  $settings->get('title')}}</span>
+                    @endif
                 </a>
                 <div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
                     <div class="menu-close xl-none">
