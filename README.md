@@ -67,6 +67,7 @@ Production ortamında paket boyutunu küçültmek için yalnızca gerekli olan b
 composer install --no-dev --optimize-autoloader
 ```
 Projenizi uzak sunucuda çalıştırmak için: 
+(php artisan serve bu komutu kullanmadan erişilebilir olması)
 
    - dizinde bulunan .htaccess.server dosya adını .htaccess olarak yeniden adlandırın.
 
